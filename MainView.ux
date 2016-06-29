@@ -1,0 +1,229 @@
+<!--<App Theme="Basic" Background="#eee">
+	<DockPanel>
+		<JavaScript File="MainView.js"/>
+		<StackPanel Dock="Top" Background="#3CB5D0">
+			<StatusBarBackground/>
+			<iOS.StatusBarConfig Style="Light"/>
+			<Panel Dock="Top" Height="50">
+				<Text Value="{currentPageTitle}" Alignment="Center"
+					  FontSize="25" TextColor="#FFF"/>
+
+				<Panel ux:Name="backButton" Alignment="Left" Width="90" Opacity="0"
+						Padding="20,0,0,0" Height="50" Clicked="{goBack}" HitTestMode="LocalBounds" >
+					<DockPanel>
+						<Image File="assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
+						<Text Alignment="Center" Margin="5,0,0,0" FontSize="18" TextColor="#fff" Dock="Right">
+							BACK
+						</Text>
+					</DockPanel>
+				</Panel>
+			</Panel>
+		</StackPanel>
+
+		<DirectNavigation Active="{currentPageHandle}"/>
+
+		<Page Name="mainPage">
+			<ScrollView>
+				<StackPanel>
+					<Each Items="{pages}">
+						<Panel Clicked="{pageButtonClicked}" Height="50" Margin="5">
+							<Rectangle Layer="Background" CornerRadius="3" Fill="#FF8362" />
+							<Text Value="{title}" Alignment="Center" TextColor="#fff" FontSize="15" />
+						</Panel>
+					</Each>
+				</StackPanel>
+			</ScrollView>
+
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="Size"
+					  Duration="0.3" Easing="CircularInOut"/>
+				<Change backButton.Opacity="1" Duration="0.3"/>
+			</ExitingAnimation>
+		</Page>
+
+		<Page Name="newInterval">
+			<Panel Clicked="{secondIntervalButtonClicked}" Height="50" Margin="5">
+				<Rectangle Layer="Background" CornerRadius="3" Fill="#FF8362" />
+				<Text Value="amatør" Alignment="Center" TextColor="#fff" FontSize="15" />
+			</Panel>
+			<ExitingAnimation>
+				<Move X="1" RelativeTo="Size" Duration="2.0" Easing="CircularInOut"/>
+			</ExitingAnimation>
+		</Page>
+
+		<Page Name="secondInterval">
+			<Text Value="Test" FontSize="49" 
+				TextColor="#3C4663" Alignment="Center"/>
+			<ExitingAnimation>
+				<Move X="1" RelativeTo="Size" Duration="3.0" Easing="CircularInOut" EasingBack="ExponentialInOut" DurationBack="6.3"/>
+			</ExitingAnimation>
+		</Page>
+
+	</DockPanel>
+</App>-->
+
+
+<App Theme="Basic">
+	<DirectNavigation />
+	<PageControl>
+	<Page Name="mainPage">
+		<DockPanel>
+			<StatusBarBackground Dock="Top" />
+			<StatusBarBackground Dock="Bottom" />
+
+			<Image File="Assets/frontpage.jpeg" StretchMode="UniformToFill" Layer="Background"/>
+
+			<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
+				<Button Text="Create new interval" Padding="70, 0, 70, 0" Margin="10">
+					<Clicked>
+						<NavigateTo Target="newInterval" />
+					</Clicked>
+				</Button>
+				<Button Text="My saved intervals" Padding="70, 0, 70, 0" Margin="10">
+					<Clicked>
+						<NavigateTo Target="mySavedIntervalls" />
+					</Clicked>
+				</Button>
+				<Button Text="Standard intervals" Padding="70, 0, 70, 0" Margin="10">
+					<Clicked>
+						<NavigateTo Target="standardIntervalls" />
+					</Clicked>
+				</Button>
+			</StackPanel>
+		</DockPanel>
+	</Page>
+
+	<Page Name="newInterval">
+		<StatusBarBackground Dock="Top" />
+		<StatusBarBackground Dock="Bottom" />
+		<StackPanel Margin="20,70,20,0">
+			<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
+				<TextInput PlaceholderText="MM"/>
+				<TextInput PlaceholderText="SS"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
+				<TextInput PlaceholderText="MM"/>
+				<TextInput PlaceholderText="SS"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
+				<TextInput PlaceholderText="Nr"/>
+			</StackPanel>
+			
+		</StackPanel>
+		<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
+			<Clicked>
+				<NavigateTo Target="mainPage" />
+			</Clicked>
+		</Button>
+	</Page>
+
+	<Page Name="mySavedIntervalls">
+		<DockPanel>
+			<StackPanel Dock="Top" Background="#545454" Height="50">
+				<Panel Dock="Top">
+					<Text Value="Lagrede intervaller" Alignment="Center"
+						  FontSize="20" TextColor="#FFF"/>
+
+					<Panel ux:Name="backButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
+						<WhilePressed>
+							<Scale Factor=".9" Duration=".1" />
+						</WhilePressed>
+						<DockPanel>
+							<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
+						</DockPanel>
+						<Clicked>
+							<NavigateTo Target="mainPage" />
+						</Clicked>
+					</Panel>
+				</Panel>
+			</StackPanel>
+			<Text ux:Class="ButtonText" FontSize="20" />
+			<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
+			<ScrollView>
+				<StackPanel Margin="0,10,0,0">
+					<JavaScript File="MainView.js"/>
+					
+					<Each Items="{buttons}">
+						<Rectangle Alignment="Center" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+						<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
+						
+						<ButtonText Value="{text}" Alignment="Center"/>
+						
+						<WhilePressed>
+							<Scale Factor=".95" Duration=".1" />
+						</WhilePressed>
+						<Clicked>
+							<NavigateTo Target="intervall" />
+						</Clicked>
+					</Rectangle>
+					</Each>
+
+					<!--<Rectangle Alignment="Center" Margin="20,20,20,20" Width="300" Height="43" CornerRadius="10">
+						<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
+						<Text Value="Intervall 1" Alignment="Center"/>
+						<WhilePressed>
+							<Scale Factor=".95" Duration=".1" />
+						</WhilePressed>
+						<Clicked>
+							<NavigateTo Target="intervall" />
+						</Clicked>
+					</Rectangle>
+					<Button Text="Intervall 2">
+						<Clicked>
+							<NavigateTo Target="intervall" />
+						</Clicked>
+					</Button>-->
+
+				</StackPanel>
+			</ScrollView>
+		</DockPanel>
+	</Page>
+
+	<Page Name="standardIntervalls">
+		<StackPanel>
+			<Button Text="4x4">
+				<Clicked>
+					<NavigateTo Target="intervall" />
+				</Clicked>
+			</Button>
+			<Button Text="6X4">
+				<Clicked>
+					<NavigateTo Target="intervall" />
+				</Clicked>
+			</Button>
+		</StackPanel>
+	
+		<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
+			<Clicked>
+				<NavigateTo Target="mainPage" />
+			</Clicked>
+		</Button>
+	</Page>
+
+	<Page Name="intervall">
+		<StackPanel Margin="20,70,20,0">
+			<Text TextAlignment="Center" Value="Clock: 10:00"/>
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="1." Alignment="Center" Margin="0,0,30,0"/>
+				<Text Value="Her skal det status bar paa tiden" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="2." Alignment="Center" Margin="0,0,30,0"/>
+				<Text Value="Her skal det status bar paa tiden" />
+			</StackPanel>
+			
+		</StackPanel>
+	
+		<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
+			<Clicked>
+				<NavigateTo Target="mainPage" />
+			</Clicked>
+		</Button>
+	</Page>
+	</PageControl>
+
+</App>
