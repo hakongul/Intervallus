@@ -63,7 +63,7 @@
 </App>-->
 
 
-<App Theme="Basic">
+<App>
 	<DirectNavigation />
 	<PageControl>
 	<Page Name="mainPage">
