@@ -71,7 +71,7 @@
 			<StatusBarBackground Dock="Top" />
 			<StatusBarBackground Dock="Bottom" />
 
-			<Image File="Assets/frontpage.jpeg" StretchMode="UniformToFill" Layer="Background"/>
+			<Image File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
 
 			<StackPanel Dock="Top" Background="#545454" Height="50">
 				<Panel Dock="Top">
