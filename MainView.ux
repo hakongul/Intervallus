@@ -63,6 +63,8 @@
 </App>-->
 
 
+<!-- TODO!! Lag style for knapp på forsiden, for knapper under intervalliste, og for panelet i toppen slik at style bare er definert en plass -->
+
 <App>
 	<DirectNavigation />
 	<PageControl>
