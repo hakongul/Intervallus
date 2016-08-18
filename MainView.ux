@@ -73,12 +73,22 @@
 
 			<Image File="Assets/frontpage.jpeg" StretchMode="UniformToFill" Layer="Background"/>
 
+			<StackPanel Dock="Top" Background="#545454" Height="50">
+				<Panel Dock="Top">
+					<Text Value="Intervallus" Alignment="Center"
+						  FontSize="20" TextColor="#FFF" Margin="0,10,0,0"/>
+				</Panel>
+			</StackPanel>
+
 			<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
-				<Button Text="Create new interval" Padding="70, 0, 70, 0" Margin="10">
+
+				<!--
+				<Button Text="Create new interval" Padding="70, 0, 70, 0" Margin="10" Width="300" Height="43">
+					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
 					<Clicked>
 						<NavigateTo Target="newInterval" />
 					</Clicked>
-				</Button>
+				</Button> 
 				<Button Text="My saved intervals" Padding="70, 0, 70, 0" Margin="10">
 					<Clicked>
 						<NavigateTo Target="mySavedIntervalls" />
@@ -88,7 +98,46 @@
 					<Clicked>
 						<NavigateTo Target="standardIntervalls" />
 					</Clicked>
-				</Button>
+				</Button> -->
+				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
+						
+					<ButtonText Value="Create new interval" Alignment="Center"/>
+						
+					<WhilePressed>
+						<Scale Factor=".95" Duration=".1" />
+					</WhilePressed>
+					<Clicked>
+						<NavigateTo Target="newInterval" />
+					</Clicked>
+				</Rectangle>
+
+				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
+						
+					<ButtonText Value="My saved intervals" Alignment="Center"/>
+						
+					<WhilePressed>
+						<Scale Factor=".95" Duration=".1" />
+					</WhilePressed>
+					<Clicked>
+						<NavigateTo Target="mySavedIntervalls" />
+					</Clicked>
+				</Rectangle>
+
+				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
+						
+					<ButtonText Value="Standard intervals" Alignment="Center"/>
+						
+					<WhilePressed>
+						<Scale Factor=".95" Duration=".1" />
+					</WhilePressed>
+					<Clicked>
+						<NavigateTo Target="standardIntervalls" />
+					</Clicked>
+				</Rectangle>
+				
 			</StackPanel>
 		</DockPanel>
 	</Page>
