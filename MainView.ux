@@ -94,25 +94,32 @@
 	</Page>
 
 	<Page Name="newInterval">
+		<JavaScript File="js/Storage.js" />
 		<StatusBarBackground Dock="Top" />
 		<StatusBarBackground Dock="Bottom" />
 		<StackPanel Margin="20,70,20,0">
-			<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
+			<TextInput  Value="{intervalName}" TextAlignment="Center" PlaceholderText="Name"/>
 			<StackPanel Orientation="Horizontal" Alignment="Center">
 				<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
-				<TextInput PlaceholderText="MM"/>
-				<TextInput PlaceholderText="SS"/>
+				<TextInput Value="{intervalMins}" PlaceholderText="MM"/>
+				<TextInput Value="{intervalSecs}" PlaceholderText="SS"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" Alignment="Center">
 				<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
-				<TextInput PlaceholderText="MM"/>
-				<TextInput PlaceholderText="SS"/>
+				<TextInput Value="{intervalPauseMins}" PlaceholderText="MM"/>
+				<TextInput Value="{intervalPauseSecs}" PlaceholderText="SS"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" Alignment="Center">
 				<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
-				<TextInput PlaceholderText="Nr"/>
+				<TextInput Value="{intervalReps}" PlaceholderText="Nr"/>
 			</StackPanel>
 			
+			<Button Clicked="{addInterval}" HitTestMode="LocalBoundsAndChildren" Alignment="HorizontalCenter" Text="Add interval" Padding="30, 5, 30, 5" Margin="0,0,0,50" />
+
+			<Button Clicked="{writeIntervalList}" HitTestMode="LocalBoundsAndChildren" Alignment="HorizontalCenter" Text="Save intervals" Padding="30, 5, 30, 5" Margin="0,0,0,50" />
+
+			<Button Clicked="{loadIntervalList}" HitTestMode="LocalBoundsAndChildren" Alignment="HorizontalCenter" Text="Load intervals" Padding="30, 5, 30, 5" Margin="0,0,0,50" />
+			<TextInput Value="{intervalContent}" Alignment="Center" PlaceholderText="Placeholder"/>
 		</StackPanel>
 		<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
 			<Clicked>
