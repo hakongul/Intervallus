@@ -62,6 +62,9 @@
 	</DockPanel>
 </App>-->
 
+<!--Neste gang, se på å dele opp page i hver sin fil + navigasjon: https://www.fusetools.com/community/forums/general/app_with_multiple_ux_files 
+Lag også en resource fil med alle ux:class-->
+
 
 <App>
 	<DirectNavigation />
