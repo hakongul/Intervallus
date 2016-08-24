@@ -62,12 +62,46 @@
 	</DockPanel>
 </App>-->
 
+<!--Neste gang, se på å dele opp page i hver sin fil + navigasjon: https://www.fusetools.com/community/forums/general/app_with_multiple_ux_files 
+Lag også en resource fil med alle ux:class-->
 
-<!-- TODO!! Lag style for knapp på forsiden, for knapper under intervalliste, og for panelet i toppen slik at style bare er definert en plass -->
 
 <App>
 	<DirectNavigation />
 	<PageControl>
+
+	<Panel ux:Class="DefaultTopStackPanel" Dock="Top" Background="#545454" Height="50"/>
+
+	<Text ux:Class="DefaultTopText" Alignment="Center" FontSize="22" TextColor="#FFF" Margin="0,5,0,0"/>
+
+	<Text ux:Class="ButtonText" FontSize="20" Alignment="Center"/>
+
+	<Panel ux:Class="DefaultBackButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
+		<WhilePressed>
+			<Scale Factor=".9" Duration=".1" />
+		</WhilePressed>
+		<DockPanel>
+			<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
+		</DockPanel>
+	</Panel>
+
+	<Rectangle ux:Class="DefaultRectangle" Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
+		<WhilePressed>
+			<Scale Factor=".95" Duration=".1" />
+		</WhilePressed>
+	</Rectangle>
+
+	<DefaultRectangle ux:Class="IntervallListRectangle">
+		<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
+	</DefaultRectangle>
+
+	<DefaultRectangle ux:Class="MainPageRectangle">
+		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
+	</DefaultRectangle>
+
+
+
 	<Page Name="mainPage">
 		<DockPanel>
 			<StatusBarBackground Dock="Top" />
@@ -75,97 +109,58 @@
 
 			<Image File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
 
-			<StackPanel Dock="Top" Background="#545454" Height="50">
-				<Panel Dock="Top">
-					<Text Value="Intervallus" Alignment="Center"
-						  FontSize="20" TextColor="#FFF" Margin="0,10,0,0"/>
-				</Panel>
-			</StackPanel>
+			<DefaultTopStackPanel>
+					<DefaultTopText Value="Intervallus"/>
+					<DefaultBackButton>
+						<Clicked>
+							<NavigateTo Target="newInterval" />
+						</Clicked>
+					</DefaultBackButton>
+			</DefaultTopStackPanel>
 
 			<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
-
-				<!--
-				<Button Text="Create new interval" Padding="70, 0, 70, 0" Margin="10" Width="300" Height="43">
-					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
+				<MainPageRectangle>
+					<ButtonText Value="Create new interval"/>
 					<Clicked>
 						<NavigateTo Target="newInterval" />
 					</Clicked>
-				</Button> 
-				<Button Text="My saved intervals" Padding="70, 0, 70, 0" Margin="10">
+				</MainPageRectangle>
+
+				<MainPageRectangle>
+					<ButtonText Value="My saved intervals"/>
 					<Clicked>
 						<NavigateTo Target="mySavedIntervalls" />
 					</Clicked>
-				</Button>
-				<Button Text="Standard intervals" Padding="70, 0, 70, 0" Margin="10">
+				</MainPageRectangle>
+
+				<MainPageRectangle>
+					<ButtonText Value="Standard intervals"/>
 					<Clicked>
 						<NavigateTo Target="standardIntervalls" />
 					</Clicked>
-				</Button> -->
-				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
-						
-					<ButtonText Value="Create new interval" Alignment="Center"/>
-						
-					<WhilePressed>
-						<Scale Factor=".95" Duration=".1" />
-					</WhilePressed>
-					<Clicked>
-						<NavigateTo Target="newInterval" />
-					</Clicked>
-				</Rectangle>
-
-				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
-						
-					<ButtonText Value="My saved intervals" Alignment="Center"/>
-						
-					<WhilePressed>
-						<Scale Factor=".95" Duration=".1" />
-					</WhilePressed>
-					<Clicked>
-						<NavigateTo Target="mySavedIntervalls" />
-					</Clicked>
-				</Rectangle>
-
-				<Rectangle Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-					<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>
-						
-					<ButtonText Value="Standard intervals" Alignment="Center"/>
-						
-					<WhilePressed>
-						<Scale Factor=".95" Duration=".1" />
-					</WhilePressed>
-					<Clicked>
-						<NavigateTo Target="standardIntervalls" />
-					</Clicked>
-				</Rectangle>
-				
+				</MainPageRectangle>			
 			</StackPanel>
 		</DockPanel>
 	</Page>
 
+
+
+
 	<Page Name="newInterval">
 		<StatusBarBackground Dock="Top" />
 		<StatusBarBackground Dock="Bottom" />
-		<DockPanel>
-			<StackPanel Dock="Top" Background="#545454" Height="50">
-				<Panel Dock="Top">
-					<Text Value="Nytt Intervall" Alignment="Center"
-						  FontSize="20" TextColor="#FFF"/>
+		<DockPanel>	
 
-					<Panel Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
-						<WhilePressed>
-							<Scale Factor=".9" Duration=".1" />
-						</WhilePressed>
-						<DockPanel>
-							<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
-						</DockPanel>
+			<DefaultTopStackPanel>
+					<DefaultTopText Value="Nytt Intervall"/>
+					<DefaultBackButton>
 						<Clicked>
 							<NavigateTo Target="mainPage" />
 						</Clicked>
-					</Panel>
-				</Panel>
-			</StackPanel>
+					</DefaultBackButton>
+			</DefaultTopStackPanel>
+
+
 			<StackPanel Margin="20,70,20,0">
 				<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
 				<StackPanel Orientation="Horizontal" Alignment="Center">
@@ -182,139 +177,88 @@
 					<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
 					<TextInput PlaceholderText="Nr"/>
 				</StackPanel>
-				
 			</StackPanel>
-			<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</Button>
 		</DockPanel>
 	</Page>
 
+
+
+
 	<Page Name="mySavedIntervalls">
 		<DockPanel>
-			<StackPanel Dock="Top" Background="#545454" Height="50">
-				<Panel Dock="Top">
-					<Text Value="Lagrede intervaller" Alignment="Center"
-						  FontSize="20" TextColor="#FFF"/>
-
-					<Panel ux:Name="backButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
-						<WhilePressed>
-							<Scale Factor=".9" Duration=".1" />
-						</WhilePressed>
-						<DockPanel>
-							<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
-						</DockPanel>
+			<DefaultTopStackPanel>
+					<DefaultTopText Value="Lagrede Intervaller"/>
+					<DefaultBackButton>
 						<Clicked>
 							<NavigateTo Target="mainPage" />
 						</Clicked>
-					</Panel>
-				</Panel>
-			</StackPanel>
-			<Text ux:Class="ButtonText" FontSize="20" />
+					</DefaultBackButton>
+			</DefaultTopStackPanel>
+
+			
 			<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
 			<ScrollView>
 				<StackPanel Margin="0,10,0,0">
 					<JavaScript File="MainView.js"/>
 					
 					<Each Items="{buttons}">
-						<Rectangle Alignment="Center" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-						<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
-						
-						<ButtonText Value="{text}" Alignment="Center"/>
-						
-						<WhilePressed>
-							<Scale Factor=".95" Duration=".1" />
-						</WhilePressed>
-						<Clicked>
-							<NavigateTo Target="intervall" />
-						</Clicked>
-					</Rectangle>
+						<IntervallListRectangle>
+							<ButtonText Value="{text}"/>
+							<Clicked>
+								<NavigateTo Target="intervall" />
+							</Clicked>
+						</IntervallListRectangle>
 					</Each>
-
-					<!--<Rectangle Alignment="Center" Margin="20,20,20,20" Width="300" Height="43" CornerRadius="10">
-						<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
-						<Text Value="Intervall 1" Alignment="Center"/>
-						<WhilePressed>
-							<Scale Factor=".95" Duration=".1" />
-						</WhilePressed>
-						<Clicked>
-							<NavigateTo Target="intervall" />
-						</Clicked>
-					</Rectangle>
-					<Button Text="Intervall 2">
-						<Clicked>
-							<NavigateTo Target="intervall" />
-						</Clicked>
-					</Button>-->
-
 				</StackPanel>
 			</ScrollView>
 		</DockPanel>
 	</Page>
 
-	<Page Name="standardIntervalls">
-		<DockPanel>
-			<StackPanel Dock="Top" Background="#545454" Height="50">
-				<Panel Dock="Top">
-					<Text Value="Standard intervaller" Alignment="Center"
-						  FontSize="20" TextColor="#FFF"/>
 
-					<Panel Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
-						<WhilePressed>
-							<Scale Factor=".9" Duration=".1" />
-						</WhilePressed>
-						<DockPanel>
-							<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
-						</DockPanel>
+
+	<Page Name="standardIntervalls">
+		<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
+		<DockPanel>
+			<DefaultTopStackPanel>
+					<DefaultTopText Value="Standard Intervaller"/>
+					<DefaultBackButton>
 						<Clicked>
 							<NavigateTo Target="mainPage" />
 						</Clicked>
-					</Panel>
-				</Panel>
-			</StackPanel>
+					</DefaultBackButton>
+			</DefaultTopStackPanel>
+
 			<StackPanel>
-				<Button Text="4x4">
+				<IntervallListRectangle>
+					<ButtonText Value="4x4"/>
 					<Clicked>
 						<NavigateTo Target="intervall" />
 					</Clicked>
-				</Button>
-				<Button Text="6X4">
+				</IntervallListRectangle>
+
+				<IntervallListRectangle>
+					<ButtonText Value="6x6"/>
 					<Clicked>
 						<NavigateTo Target="intervall" />
 					</Clicked>
-				</Button>
+				</IntervallListRectangle>
 			</StackPanel>
-		
-			<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</Button>
 		</DockPanel>
 	</Page>
 
+
+
 	<Page Name="intervall">
 		<DockPanel>
-			<StackPanel Dock="Top" Background="#545454" Height="50">
-				<Panel Dock="Top">
-					<Text Value="Intervall" Alignment="Center"
-						  FontSize="20" TextColor="#FFF"/>
-
-					<Panel Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
-						<WhilePressed>
-							<Scale Factor=".9" Duration=".1" />
-						</WhilePressed>
-						<DockPanel>
-							<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
-						</DockPanel>
+			<DefaultTopStackPanel>
+					<DefaultTopText Value="Intervall"/>
+					<DefaultBackButton>
 						<Clicked>
 							<NavigateTo Target="mainPage" />
 						</Clicked>
-					</Panel>
-				</Panel>
-			</StackPanel>
+					</DefaultBackButton>
+			</DefaultTopStackPanel>
+
 			<StackPanel Margin="20,70,20,0">
 				<Text TextAlignment="Center" Value="Clock: 10:00"/>
 				<StackPanel Orientation="Horizontal" Alignment="Center">
@@ -327,12 +271,6 @@
 				</StackPanel>
 				
 			</StackPanel>
-		
-			<Button Alignment="BottomCenter" Text="Back" Padding="30, 5, 30, 5" Margin="0,0,0,50">
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</Button>
 		</DockPanel>
 	</Page>
 	</PageControl>
