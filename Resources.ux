@@ -1,0 +1,44 @@
+<Panel Width="0" Height="0">
+	<Fuse.iOS.StatusBarConfig Style="Dark" />
+
+	<!-- Colors -->
+	<float4 ux:Global="FontColorTopText" ux:Value="#FFF" />
+	<float4 ux:Global="FontColor" ux:Value="#484848" />
+	<float4 ux:Global="LighterFontColor" ux:Value="#707070" />
+	<float4 ux:Global="DarkerFontColor" ux:Value="#282828" />
+
+
+	<!-- Styling -->
+	<!-- Top Part -->
+	<Panel ux:Class="DefaultTopStackPanel" Dock="Top" Background="#545454" Height="50"/>
+	<Text ux:Class="DefaultTopText" Alignment="Center" FontSize="22" TextColor="FontColorTopText" Margin="0,5,0,0"/>
+
+	<Panel ux:Class="DefaultBackButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
+		<WhilePressed>
+			<Scale Factor=".9" Duration=".1" />
+		</WhilePressed>
+		<DockPanel>
+			<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
+		</DockPanel>
+	</Panel>
+
+
+	<!-- Buttons -->
+	<Text ux:Class="ButtonText" FontSize="20" Alignment="Center" TextColor="FontColor"/>
+
+	<Rectangle ux:Class="DefaultRectangle" Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
+		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
+		<WhilePressed>
+			<Scale Factor=".95" Duration=".1" />
+		</WhilePressed>
+	</Rectangle>
+
+	<DefaultRectangle ux:Class="IntervallListRectangle">
+		<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
+	</DefaultRectangle>
+
+	<DefaultRectangle ux:Class="MainPageRectangle">
+		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
+	</DefaultRectangle>
+	
+</Panel>

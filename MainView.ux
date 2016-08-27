@@ -5,60 +5,31 @@
 Lag også en resource fil med alle ux:class-->
 
 <App>
+	<ux:Include File="Resources.ux" />
+
 	<DirectNavigation />
 	<PageControl>
 
-	<Panel ux:Class="DefaultTopStackPanel" Dock="Top" Background="#545454" Height="50"/>
+		<Page ux:Name="mainPage">
+			<ux:Include File="mainPage.ux" />
+		</Page>
 
-	<Text ux:Class="DefaultTopText" Alignment="Center" FontSize="22" TextColor="#FFF" Margin="0,5,0,0"/>
+		<Page Name="newInterval">
+			<ux:Include File="newInterval.ux" />
+		</Page>
 
-	<Text ux:Class="ButtonText" FontSize="20" Alignment="Center"/>
+		<Page Name="mySavedIntervalls">
+			<ux:Include File="mySavedIntervalls.ux" />
+		</Page>
 
-	<Panel ux:Class="DefaultBackButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
-		<WhilePressed>
-			<Scale Factor=".9" Duration=".1" />
-		</WhilePressed>
-		<DockPanel>
-			<Image File="Assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left" />
-		</DockPanel>
-	</Panel>
+		<Page Name="standardIntervalls">
+			<ux:Include File="standardIntervalls.ux" />		
+		</Page>
 
-	<Rectangle ux:Class="DefaultRectangle" Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
-		<WhilePressed>
-			<Scale Factor=".95" Duration=".1" />
-		</WhilePressed>
-	</Rectangle>
+		<Page Name="intervall">
+			<ux:Include File="intervall.ux" />		
+		</Page>
 
-	<DefaultRectangle ux:Class="IntervallListRectangle">
-		<ImageFill File="Assets/button_background_2.jpg" StretchMode="UniformToFill"/>
-	</DefaultRectangle>
-
-	<DefaultRectangle ux:Class="MainPageRectangle">
-		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
-	</DefaultRectangle>
-
-
-
-	<Page ux:Name="mainPage">
-		<ux:Include File="mainPage.ux" />
-	</Page>
-
-	<Page Name="newInterval">
-		<ux:Include File="newInterval.ux" />
-	</Page>
-
-	<Page Name="mySavedIntervalls">
-		<ux:Include File="mySavedIntervalls.ux" />
-	</Page>
-
-	<Page Name="standardIntervalls">
-		<ux:Include File="standardIntervalls.ux" />		
-	</Page>
-
-	<Page Name="intervall">
-		<ux:Include File="intervall.ux" />		
-	</Page>
 	</PageControl>
 
 </App>
