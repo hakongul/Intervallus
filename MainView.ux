@@ -1,70 +1,8 @@
-<!--<App Theme="Basic" Background="#eee">
-	<DockPanel>
-		<JavaScript File="MainView.js"/>
-		<StackPanel Dock="Top" Background="#3CB5D0">
-			<StatusBarBackground/>
-			<iOS.StatusBarConfig Style="Light"/>
-			<Panel Dock="Top" Height="50">
-				<Text Value="{currentPageTitle}" Alignment="Center"
-					  FontSize="25" TextColor="#FFF"/>
-
-				<Panel ux:Name="backButton" Alignment="Left" Width="90" Opacity="0"
-						Padding="20,0,0,0" Height="50" Clicked="{goBack}" HitTestMode="LocalBounds" >
-					<DockPanel>
-						<Image File="assets/arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
-						<Text Alignment="Center" Margin="5,0,0,0" FontSize="18" TextColor="#fff" Dock="Right">
-							BACK
-						</Text>
-					</DockPanel>
-				</Panel>
-			</Panel>
-		</StackPanel>
-
-		<DirectNavigation Active="{currentPageHandle}"/>
-
-		<Page Name="mainPage">
-			<ScrollView>
-				<StackPanel>
-					<Each Items="{pages}">
-						<Panel Clicked="{pageButtonClicked}" Height="50" Margin="5">
-							<Rectangle Layer="Background" CornerRadius="3" Fill="#FF8362" />
-							<Text Value="{title}" Alignment="Center" TextColor="#fff" FontSize="15" />
-						</Panel>
-					</Each>
-				</StackPanel>
-			</ScrollView>
-
-			<ExitingAnimation>
-				<Move X="-1" RelativeTo="Size"
-					  Duration="0.3" Easing="CircularInOut"/>
-				<Change backButton.Opacity="1" Duration="0.3"/>
-			</ExitingAnimation>
-		</Page>
-
-		<Page Name="newInterval">
-			<Panel Clicked="{secondIntervalButtonClicked}" Height="50" Margin="5">
-				<Rectangle Layer="Background" CornerRadius="3" Fill="#FF8362" />
-				<Text Value="amatør" Alignment="Center" TextColor="#fff" FontSize="15" />
-			</Panel>
-			<ExitingAnimation>
-				<Move X="1" RelativeTo="Size" Duration="2.0" Easing="CircularInOut"/>
-			</ExitingAnimation>
-		</Page>
-
-		<Page Name="secondInterval">
-			<Text Value="Test" FontSize="49" 
-				TextColor="#3C4663" Alignment="Center"/>
-			<ExitingAnimation>
-				<Move X="1" RelativeTo="Size" Duration="3.0" Easing="CircularInOut" EasingBack="ExponentialInOut" DurationBack="6.3"/>
-			</ExitingAnimation>
-		</Page>
-
-	</DockPanel>
-</App>-->
+<!--StatusBarBackground/-->
+<!--iOS.StatusBarConfig Style="Light"/-->
 
 <!--Neste gang, se på å dele opp page i hver sin fil + navigasjon: https://www.fusetools.com/community/forums/general/app_with_multiple_ux_files 
 Lag også en resource fil med alle ux:class-->
-
 
 <App>
 	<DirectNavigation />
