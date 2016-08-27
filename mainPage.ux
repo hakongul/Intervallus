@@ -6,11 +6,6 @@
 
 	<DefaultTopStackPanel>
 			<DefaultTopText Value="Intervallus"/>
-			<DefaultBackButton>
-				<Clicked>
-					<NavigateTo Target="newInterval" />
-				</Clicked>
-			</DefaultBackButton>
 	</DefaultTopStackPanel>
 
 	<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">

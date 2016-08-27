@@ -1,35 +1,33 @@
 <!--StatusBarBackground/-->
 <!--iOS.StatusBarConfig Style="Light"/-->
 
-<!--Neste gang, se på å dele opp page i hver sin fil + navigasjon: https://www.fusetools.com/community/forums/general/app_with_multiple_ux_files 
-Lag også en resource fil med alle ux:class-->
+<!--Neste gang, se på navigasjon med HierarchicalNavigation-->
+<!--https://github.com/fusetools/handbook-docs/blob/master/Fuse/09%20-%20Navigation.md-->
 
 <App>
 	<ux:Include File="Resources.ux" />
-
-	<DirectNavigation />
-	<PageControl>
-
+	
+	<PageControl TransitionDuration="0">
 		<Page ux:Name="mainPage">
 			<ux:Include File="mainPage.ux" />
 		</Page>
 
-		<Page Name="newInterval">
+		<Page ux:Name="newInterval">
 			<ux:Include File="newInterval.ux" />
 		</Page>
 
-		<Page Name="mySavedIntervalls">
+		<Page ux:Name="mySavedIntervalls">
 			<ux:Include File="mySavedIntervalls.ux" />
 		</Page>
 
-		<Page Name="standardIntervalls">
+		<Page ux:Name="standardIntervalls">
 			<ux:Include File="standardIntervalls.ux" />		
 		</Page>
 
-		<Page Name="intervall">
+		<Page ux:Name="intervall">
 			<ux:Include File="intervall.ux" />		
 		</Page>
-
 	</PageControl>
+
 
 </App>
