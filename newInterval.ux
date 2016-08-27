@@ -1,0 +1,32 @@
+<DockPanel>	
+	<StatusBarBackground Dock="Top" />
+	<StatusBarBackground Dock="Bottom" />
+
+	<DefaultTopStackPanel>
+			<DefaultTopText Value="Nytt Intervall"/>
+			<DefaultBackButton>
+				<Clicked>
+					<NavigateTo Target="mainPage" />
+				</Clicked>
+			</DefaultBackButton>
+	</DefaultTopStackPanel>
+
+
+	<StackPanel Margin="20,70,20,0">
+		<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
+		<StackPanel Orientation="Horizontal" Alignment="Center">
+			<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
+			<TextInput PlaceholderText="MM"/>
+			<TextInput PlaceholderText="SS"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Alignment="Center">
+			<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
+			<TextInput PlaceholderText="MM"/>
+			<TextInput PlaceholderText="SS"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Alignment="Center">
+			<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
+			<TextInput PlaceholderText="Nr"/>
+		</StackPanel>
+	</StackPanel>
+</DockPanel>

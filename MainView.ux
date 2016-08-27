@@ -102,176 +102,24 @@ Lag også en resource fil med alle ux:class-->
 
 
 
-	<Page Name="mainPage">
-		<DockPanel>
-			<StatusBarBackground Dock="Top" />
-			<StatusBarBackground Dock="Bottom" />
-
-			<Image File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
-
-			<DefaultTopStackPanel>
-					<DefaultTopText Value="Intervallus"/>
-					<DefaultBackButton>
-						<Clicked>
-							<NavigateTo Target="newInterval" />
-						</Clicked>
-					</DefaultBackButton>
-			</DefaultTopStackPanel>
-
-			<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
-				<MainPageRectangle>
-					<ButtonText Value="Create new interval"/>
-					<Clicked>
-						<NavigateTo Target="newInterval" />
-					</Clicked>
-				</MainPageRectangle>
-
-				<MainPageRectangle>
-					<ButtonText Value="My saved intervals"/>
-					<Clicked>
-						<NavigateTo Target="mySavedIntervalls" />
-					</Clicked>
-				</MainPageRectangle>
-
-				<MainPageRectangle>
-					<ButtonText Value="Standard intervals"/>
-					<Clicked>
-						<NavigateTo Target="standardIntervalls" />
-					</Clicked>
-				</MainPageRectangle>			
-			</StackPanel>
-		</DockPanel>
+	<Page ux:Name="mainPage">
+		<ux:Include File="mainPage.ux" />
 	</Page>
-
-
-
 
 	<Page Name="newInterval">
-		<StatusBarBackground Dock="Top" />
-		<StatusBarBackground Dock="Bottom" />
-		<DockPanel>	
-
-			<DefaultTopStackPanel>
-					<DefaultTopText Value="Nytt Intervall"/>
-					<DefaultBackButton>
-						<Clicked>
-							<NavigateTo Target="mainPage" />
-						</Clicked>
-					</DefaultBackButton>
-			</DefaultTopStackPanel>
-
-
-			<StackPanel Margin="20,70,20,0">
-				<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
-				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
-					<TextInput PlaceholderText="MM"/>
-					<TextInput PlaceholderText="SS"/>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
-					<TextInput PlaceholderText="MM"/>
-					<TextInput PlaceholderText="SS"/>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
-					<TextInput PlaceholderText="Nr"/>
-				</StackPanel>
-			</StackPanel>
-		</DockPanel>
+		<ux:Include File="newInterval.ux" />
 	</Page>
-
-
-
 
 	<Page Name="mySavedIntervalls">
-		<DockPanel>
-			<DefaultTopStackPanel>
-					<DefaultTopText Value="Lagrede Intervaller"/>
-					<DefaultBackButton>
-						<Clicked>
-							<NavigateTo Target="mainPage" />
-						</Clicked>
-					</DefaultBackButton>
-			</DefaultTopStackPanel>
-
-			
-			<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
-			<ScrollView>
-				<StackPanel Margin="0,10,0,0">
-					<JavaScript File="MainView.js"/>
-					
-					<Each Items="{buttons}">
-						<IntervallListRectangle>
-							<ButtonText Value="{text}"/>
-							<Clicked>
-								<NavigateTo Target="intervall" />
-							</Clicked>
-						</IntervallListRectangle>
-					</Each>
-				</StackPanel>
-			</ScrollView>
-		</DockPanel>
+		<ux:Include File="mySavedIntervalls.ux" />
 	</Page>
-
-
 
 	<Page Name="standardIntervalls">
-		<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
-		<DockPanel>
-			<DefaultTopStackPanel>
-					<DefaultTopText Value="Standard Intervaller"/>
-					<DefaultBackButton>
-						<Clicked>
-							<NavigateTo Target="mainPage" />
-						</Clicked>
-					</DefaultBackButton>
-			</DefaultTopStackPanel>
-
-			<StackPanel>
-				<IntervallListRectangle>
-					<ButtonText Value="4x4"/>
-					<Clicked>
-						<NavigateTo Target="intervall" />
-					</Clicked>
-				</IntervallListRectangle>
-
-				<IntervallListRectangle>
-					<ButtonText Value="6x6"/>
-					<Clicked>
-						<NavigateTo Target="intervall" />
-					</Clicked>
-				</IntervallListRectangle>
-			</StackPanel>
-		</DockPanel>
+		<ux:Include File="standardIntervalls.ux" />		
 	</Page>
 
-
-
 	<Page Name="intervall">
-		<DockPanel>
-			<DefaultTopStackPanel>
-					<DefaultTopText Value="Intervall"/>
-					<DefaultBackButton>
-						<Clicked>
-							<NavigateTo Target="mainPage" />
-						</Clicked>
-					</DefaultBackButton>
-			</DefaultTopStackPanel>
-
-			<StackPanel Margin="20,70,20,0">
-				<Text TextAlignment="Center" Value="Clock: 10:00"/>
-				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="1." Alignment="Center" Margin="0,0,30,0"/>
-					<Text Value="Her skal det status bar paa tiden" />
-				</StackPanel>
-				<StackPanel Orientation="Horizontal" Alignment="Center">
-					<Text Value="2." Alignment="Center" Margin="0,0,30,0"/>
-					<Text Value="Her skal det status bar paa tiden" />
-				</StackPanel>
-				
-			</StackPanel>
-		</DockPanel>
+		<ux:Include File="intervall.ux" />		
 	</Page>
 	</PageControl>
 
