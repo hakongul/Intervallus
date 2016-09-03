@@ -1,8 +1,5 @@
 <DockPanel>
-	<StatusBarBackground Dock="Top" />
-	<StatusBarBackground Dock="Bottom" />
-
-	<Image File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<MainPageBackground />
 
 	<DefaultTopStackPanel>
 			<DefaultTopText Value="Intervallus"/>

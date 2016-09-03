@@ -1,7 +1,8 @@
 <DockPanel>
-	<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<GeneralBackground />
+
 	<DefaultTopStackPanel>
-		<DefaultTopText Value="Standard Intervaller"/>
+		<DefaultTopText Value="Standard Intervals"/>
 	</DefaultTopStackPanel>
 
 	<StackPanel>

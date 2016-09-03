@@ -1,6 +1,8 @@
 <DockPanel>
+	<GeneralBackground />
+	
 	<DefaultTopStackPanel>
-		<DefaultTopText Value="Intervall"/>
+		<DefaultTopText Value="Interval"/>
 	</DefaultTopStackPanel>
 
 	<StackPanel Margin="20,70,20,0">

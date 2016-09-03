@@ -1,10 +1,10 @@
 <DockPanel>
+	<GeneralBackground />
+	
 	<DefaultTopStackPanel>
-		<DefaultTopText Value="Lagrede Intervaller"/>
+		<DefaultTopText Value="Saved Intervals"/>
 	</DefaultTopStackPanel>
 
-	
-	<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
 	<ScrollView>
 		<StackPanel Margin="0,10,0,0">
 			<JavaScript File="MainView.js"/>
