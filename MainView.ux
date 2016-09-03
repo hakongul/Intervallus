@@ -1,10 +1,9 @@
-<!--StatusBarBackground/-->
-<!--iOS.StatusBarConfig Style="Light"/-->
-
 <App>
 	<Panel>
 		<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
 		<SwipeNavigate AllowedDirections="Both" />
+		<iOS.StatusBarConfig Style="Light" IsVisible="true" />
+
 		<ux:Include File="Resources.ux" />
 		<OnBackButton>
 			<GoBack />

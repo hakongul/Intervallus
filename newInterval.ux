@@ -1,11 +1,9 @@
 <DockPanel>	
-	<StatusBarBackground Dock="Top" />
-	<StatusBarBackground Dock="Bottom" />
-
+	<GeneralBackground />
+	
 	<DefaultTopStackPanel>
-		<DefaultTopText Value="Nytt Intervall"/>
+		<DefaultTopText Value="New Interval"/>
 	</DefaultTopStackPanel>
-
 
 	<StackPanel Margin="20,70,20,0">
 		<TextInput  TextAlignment="Center" PlaceholderText="Name"/>

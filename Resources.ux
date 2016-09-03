@@ -7,6 +7,9 @@
 	<float4 ux:Global="LighterFontColor" ux:Value="#707070" />
 	<float4 ux:Global="DarkerFontColor" ux:Value="#282828" />
 
+	<!-- Backgrounds -->
+	<Image ux:Class="GeneralBackground" File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<Image ux:Class="MainPageBackground" File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
 
 	<!-- Styling -->
 	<!-- Top Part -->
