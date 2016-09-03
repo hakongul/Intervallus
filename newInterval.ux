@@ -3,12 +3,7 @@
 	<StatusBarBackground Dock="Bottom" />
 
 	<DefaultTopStackPanel>
-			<DefaultTopText Value="Nytt Intervall"/>
-			<DefaultBackButton>
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</DefaultBackButton>
+		<DefaultTopText Value="Nytt Intervall"/>
 	</DefaultTopStackPanel>
 
 

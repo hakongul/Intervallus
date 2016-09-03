@@ -1,11 +1,6 @@
 <DockPanel>
 	<DefaultTopStackPanel>
-			<DefaultTopText Value="Intervall"/>
-			<DefaultBackButton>
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</DefaultBackButton>
+		<DefaultTopText Value="Intervall"/>
 	</DefaultTopStackPanel>
 
 	<StackPanel Margin="20,70,20,0">

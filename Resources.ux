@@ -1,4 +1,4 @@
-<Panel Width="0" Height="0">
+<Panel Width="0" Height="0" ux:AutoBind="false">
 	<Fuse.iOS.StatusBarConfig Style="Dark" />
 
 	<!-- Colors -->
@@ -10,8 +10,24 @@
 
 	<!-- Styling -->
 	<!-- Top Part -->
-	<Panel ux:Class="DefaultTopStackPanel" Dock="Top" Background="#545454" Height="50"/>
 	<Text ux:Class="DefaultTopText" Alignment="Center" FontSize="22" TextColor="FontColorTopText" Margin="0,5,0,0"/>
+
+	<Panel ux:Class="DefaultTopStackPanel" Dock="Top" Background="#545454" Height="50">
+		<WhileCanGoBack>
+			<DefaultBackButton>
+				<Clicked>
+					<GoBack />
+				</Clicked>
+			</DefaultBackButton>
+		</WhileCanGoBack>
+		<WhileCanGoForward>
+			<DefaultForwardButton>
+				<Clicked>
+					<GoForward />
+				</Clicked>
+			</DefaultForwardButton>
+		</WhileCanGoForward>
+	</Panel>
 
 	<Panel ux:Class="DefaultBackButton" Alignment="Left" Width="90" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
 		<WhilePressed>
@@ -22,6 +38,14 @@
 		</DockPanel>
 	</Panel>
 
+	<Panel ux:Class="DefaultForwardButton" Alignment="Right" Width="50" Opacity="1" Padding="20,0,0,0" Height="50" HitTestMode="LocalBounds" >
+		<WhilePressed>
+			<Scale Factor=".9" Duration=".1" />
+		</WhilePressed>
+		<DockPanel>
+			<Image File="Assets/arrow-right-white.png" Height="20" Color="#fff" Dock="Left" />
+		</DockPanel>
+	</Panel>
 
 	<!-- Buttons -->
 	<Text ux:Class="ButtonText" FontSize="20" Alignment="Center" TextColor="FontColor"/>
@@ -40,5 +64,16 @@
 	<DefaultRectangle ux:Class="MainPageRectangle">
 		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
 	</DefaultRectangle>
+
+
+	<!-- Page -->
+	<Page ux:Class="MyPage">
+        <EnteringAnimation>
+            <Move X="1" RelativeTo="ParentSize" />
+        </EnteringAnimation>
+        <ExitingAnimation>
+            <Move X="-1" RelativeTo="ParentSize" />
+        </ExitingAnimation>
+    </Page>
 	
 </Panel>
