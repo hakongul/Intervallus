@@ -7,7 +7,7 @@
 		<SwipeNavigate AllowedDirections="Both" />
 		<ux:Include File="Resources.ux" />
 		<OnBackButton>
-			<GoBack Delay="0.1"/>
+			<GoBack />
 		</OnBackButton>
 
 		<MyPage ux:Name="mainPage">
