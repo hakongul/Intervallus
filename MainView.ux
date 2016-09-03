@@ -1,33 +1,34 @@
 <!--StatusBarBackground/-->
 <!--iOS.StatusBarConfig Style="Light"/-->
 
-<!--Neste gang, se på navigasjon med HierarchicalNavigation-->
-<!--https://github.com/fusetools/handbook-docs/blob/master/Fuse/09%20-%20Navigation.md-->
-
 <App>
-	<ux:Include File="Resources.ux" />
-	
-	<PageControl TransitionDuration="0">
-		<Page ux:Name="mainPage">
+	<Panel>
+		<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
+		<SwipeNavigate AllowedDirections="Both" />
+		<ux:Include File="Resources.ux" />
+		<OnBackButton>
+			<GoBack />
+		</OnBackButton>
+
+		<MyPage ux:Name="mainPage">
 			<ux:Include File="mainPage.ux" />
-		</Page>
+		</MyPage>
 
-		<Page ux:Name="newInterval">
+		<MyPage ux:Name="newInterval" ux:AutoBind="false">
 			<ux:Include File="newInterval.ux" />
-		</Page>
+		</MyPage>
 
-		<Page ux:Name="mySavedIntervalls">
+		<MyPage ux:Name="mySavedIntervalls" ux:AutoBind="false">
 			<ux:Include File="mySavedIntervalls.ux" />
-		</Page>
+		</MyPage>
 
-		<Page ux:Name="standardIntervalls">
+		<MyPage ux:Name="standardIntervalls" ux:AutoBind="false">
 			<ux:Include File="standardIntervalls.ux" />		
-		</Page>
+		</MyPage>
 
-		<Page ux:Name="intervall">
+		<MyPage ux:Name="intervall" ux:AutoBind="false">
 			<ux:Include File="intervall.ux" />		
-		</Page>
-	</PageControl>
+		</MyPage>
 
-
+	</Panel>
 </App>

@@ -1,11 +1,6 @@
 <DockPanel>
 	<DefaultTopStackPanel>
-			<DefaultTopText Value="Lagrede Intervaller"/>
-			<DefaultBackButton>
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</DefaultBackButton>
+		<DefaultTopText Value="Lagrede Intervaller"/>
 	</DefaultTopStackPanel>
 
 	

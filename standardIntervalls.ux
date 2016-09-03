@@ -1,12 +1,7 @@
 <DockPanel>
 	<Image File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
 	<DefaultTopStackPanel>
-			<DefaultTopText Value="Standard Intervaller"/>
-			<DefaultBackButton>
-				<Clicked>
-					<NavigateTo Target="mainPage" />
-				</Clicked>
-			</DefaultBackButton>
+		<DefaultTopText Value="Standard Intervaller"/>
 	</DefaultTopStackPanel>
 
 	<StackPanel>
