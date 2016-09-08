@@ -94,7 +94,7 @@
 		    		</Slider>
 		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
 		    	</StackPanel>
-		    	<MyRectangle Alignment="BottomCenter" Margin="10">
+		    	<MyRectangle Alignment="BottomCenter" Margin="10" Width="180">
 	    			<ButtonText Value="Add to inverval" TextColor="DarkerFontColor" />
 	    		</MyRectangle>
 	    	
