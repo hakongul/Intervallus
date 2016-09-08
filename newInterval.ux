@@ -15,23 +15,12 @@
         </Pressed>
 	</TextInput>
 
-	<!--StackPanel Margin="20,70,20,0">
-		<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
-		<StackPanel Orientation="Horizontal" Alignment="Center">
-			<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="MM"/>
-			<TextInput PlaceholderText="SS"/>
-		</StackPanel>
-		<StackPanel Orientation="Horizontal" Alignment="Center">
-			<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="MM"/>
-			<TextInput PlaceholderText="SS"/>
-		</StackPanel>
-		<StackPanel Orientation="Horizontal" Alignment="Center">
-			<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="Nr"/>
-		</StackPanel>
-	</StackPanel-->
+	<Rectangle ux:Class="MyRectangle" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10" Color="#DDD">
+		<Stroke Width="3" Color="#555" />
+		<WhilePressed>
+			<Scale Factor=".95" Duration=".1" />
+		</WhilePressed>
+	</Rectangle>
 
 	<JavaScript>
 		var Observable = require("FuseJS/Observable");
@@ -44,10 +33,7 @@
 		numberOfRepeats.addSubscriber(getNumberOFRepeats)
 
 		function getNumberOFRepeats() {
-			console.log(parseInt(numberOfRepeats.value, 10));
-			//return parseInt(numberOfRepeats.value, 10);
 			number.value = parseInt(numberOfRepeats.value, 10);
-			console.log("hoggorm " + number.value);
 		}
 
 		module.exports = {
@@ -57,29 +43,40 @@
 		};
 	</JavaScript>
 	<Grid RowCount="2" ColumnCount="1">
-	    <StackPanel Row="0" Column="0" Color="#BBBBBB">
-	    	<MyTextInput PlaceholderText="Name of interval" Margin="10,10,10,0"/>
-	    	<DockPanel Margin="0,10,0,0">
-	    		<ButtonText Value="Intervall time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
-	    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-	    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
-	    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
-	    		</StackPanel>
-	    	</DockPanel>
-	    	
-	    	<DockPanel Margin="0,10,0,0">
-	    		<ButtonText Value="Pause time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
-	    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-	    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
-	    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
-	    		</StackPanel>
-	    	</DockPanel>
-	    	<DockPanel Margin="0,10,0,0">
-	    		<Slider Minimum="1" Maximum="9" Margin="10" Value="{numberOfRepeats}" Alignment="CenterRight" Width="200" RelativeValue="1"/>
-	    		
-	    		<Text Value="{number}" Alignment="CenterLeft"/>
-	    	</DockPanel>
-	    </StackPanel>
+	    <DockPanel Row="0" Column="0" Color="#BBBBBB">
+	    	<StackPanel>
+		    	<MyTextInput PlaceholderText="Name of interval" Margin="10,10,10,0"/>
+
+		    	<DockPanel Margin="0,10,0,0">
+		    		<ButtonText Value="Intervall time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
+		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
+		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
+		    		</StackPanel>
+		    	</DockPanel>
+		    	
+		    	<DockPanel Margin="0,10,0,0">
+		    		<ButtonText Value="Pause time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
+		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
+		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
+		    		</StackPanel>
+		    	</DockPanel>
+
+		    	<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+		    		<ButtonText Value="Number of intervals:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<Slider Minimum="1" Maximum="9" Margin="10,0,10,0" Value="{numberOfRepeats}" Width="130">
+		    			<Pressed>
+		    				<Scale Factor=".98" Duration=".1" />
+		    			</Pressed>
+		    		</Slider>
+		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0"/>
+		    	</StackPanel>
+	    	</StackPanel>
+	    	<MyRectangle Alignment="BottomCenter">
+	    		<ButtonText Value="Add to invervall" TextColor="DarkerFontColor" />
+	    	</MyRectangle>
+	    </DockPanel>
 	    <StackPanel Row="1" Column="0" Color="Blue">
 
 	    </StackPanel>

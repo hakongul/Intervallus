@@ -54,7 +54,7 @@
 	<Text ux:Class="ButtonText" FontSize="20" Alignment="Center" TextColor="FontColor"/>
 
 	<Rectangle ux:Class="DefaultRectangle" Alignment="Center" Padding="70, 0, 70, 0" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10">
-		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
+		
 		<WhilePressed>
 			<Scale Factor=".95" Duration=".1" />
 		</WhilePressed>
