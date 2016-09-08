@@ -64,8 +64,8 @@
 	</JavaScript>
 
 	
-	<Grid RowCount="2" ColumnCount="1">
-	    <DockPanel Row="0" Column="0">
+	<DockPanel>
+	    <DockPanel Alignment="Top">
 	    	<StackPanel>
 		    	<MyTextInput PlaceholderText="Name of interval" Margin="10,10,10,0"/>
 
@@ -94,43 +94,47 @@
 		    		</Slider>
 		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
 		    	</StackPanel>
+		    	<MyRectangle Alignment="BottomCenter" Margin="10">
+	    			<ButtonText Value="Add to inverval" TextColor="DarkerFontColor" />
+	    		</MyRectangle>
+	    	
+	    
+		    	<ScrollView MaxHeight="300" Alignment="Top">
+		    		<StackPanel>
+		    			<Each Items="{elements}" >
+		    				<Panel>
+		    					<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
+			    				<DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,20,10,0">
+			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Left">
+			    						<ButtonText Value="{index}" Color="White" />
+			    						<ButtonText Value=". Interval: " Color="White" Margin="0,0,20,0"/>
+				    					<ButtonText Value="{element.mins}" Color="White" />
+				    					<ButtonText Value=":" Color="White" />
+				    					<ButtonText Value="{element.secs}" Color="White"/>
+			    					</StackPanel>
+			    				</DockPanel>
+		    				</Panel>
+		    				<Panel>
+		    					<DockPanel HitTestMode="LocalBoundsAndChildren">
+			    					<StackPanel Orientation="Horizontal" Margin="80,0,10,0" Dock="Left">
+			    						<ButtonText Value="{index}" Color="White" />
+			    						<ButtonText Value=". Pause: " Color="White" Margin="0,0,20,0"/>
+				    					<ButtonText Value="{element.pauseMins}" Color="White" />
+				    					<ButtonText Value=":" Color="White" />
+				    					<ButtonText Value="{element.pauseSecs}" Color="White"/>
+			    					</StackPanel>
+			    				</DockPanel>
+		    				</Panel>
+		    			</Each>
+		    			<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
+		    		</StackPanel>
+		    	</ScrollView>
 	    	</StackPanel>
-	    	<MyRectangle Alignment="BottomCenter">
-	    		<ButtonText Value="Add to invervall" TextColor="DarkerFontColor" />
-	    	</MyRectangle>
 	    </DockPanel>
-
-	    <StackPanel Row="1" Column="0">
-	    	<ScrollView>
-	    		<StackPanel>
-	    			<Each Items="{elements}" >
-	    				<Panel>
-	    					<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
-		    				<DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,20,10,0">
-		    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Left">
-		    						<ButtonText Value="{index}" Color="White" />
-		    						<ButtonText Value=". Interval: " Color="White" Margin="0,0,20,0"/>
-			    					<ButtonText Value="{element.mins}" Color="White" />
-			    					<ButtonText Value=":" Color="White" />
-			    					<ButtonText Value="{element.secs}" Color="White"/>
-		    					</StackPanel>
-		    				</DockPanel>
-	    				</Panel>
-	    				<Panel>
-	    					<DockPanel HitTestMode="LocalBoundsAndChildren">
-		    					<StackPanel Orientation="Horizontal" Margin="80,0,10,0" Dock="Left">
-		    						<ButtonText Value="{index}" Color="White" />
-		    						<ButtonText Value=". Pause: " Color="White" Margin="0,0,20,0"/>
-			    					<ButtonText Value="{element.pauseMins}" Color="White" />
-			    					<ButtonText Value=":" Color="White" />
-			    					<ButtonText Value="{element.pauseSecs}" Color="White"/>
-		    					</StackPanel>
-		    				</DockPanel>
-	    				</Panel>
-	    			</Each>
-	    			<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
-	    		</StackPanel>
-	    	</ScrollView>
-	    </StackPanel>
-	</Grid>
+ 		<StackPanel Alignment="BottomCenter" Margin="10">
+    		<MyRectangle Alignment="BottomCenter">
+	    		<ButtonText Value="Save interval" TextColor="DarkerFontColor" />
+	    	</MyRectangle>
+	    </StackPanel>		
+	</DockPanel>
 </DockPanel>

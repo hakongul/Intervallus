@@ -11,7 +11,10 @@ function fetchInterval(callback) {
 	setTimeout(function() {
 		callback([
 			new interval("int 1", "33", "33", "22", "22", "2"),
-			new interval("int 2", "11", "11", "01", "01", "1")]);
+			new interval("int 2", "11", "11", "01", "01", "1"),
+			new interval("int 3", "04", "00", "02", "00", "1"),
+			new interval("int 4", "04", "00", "02", "00", "1"),
+			new interval("int 5", "04", "00", "02", "00", "1")]);
 	}, 0);
 }
 
