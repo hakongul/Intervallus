@@ -1,5 +1,5 @@
 <DockPanel>	
-	<GeneralBackground />
+	<Image File="Assets/test.jpg" StretchMode="UniformToFill" Layer="Background"/>
 	
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="New Interval"/>
@@ -24,10 +24,19 @@
 
 	<JavaScript>
 		var Observable = require("FuseJS/Observable");
+		var mock = require("js/mockIntervals")
+
+		var intervals = Observable();
+
+		mock.fetchInterval(function(newIntervals) {
+			newIntervals.forEach(function(interval) {
+				intervals.add(interval);
+			});
+		});
 
 		var numberOfRepeats = Observable();
 		var number = Observable();
-
+		
 		numberOfRepeats.value = 1;
 
 		numberOfRepeats.addSubscriber(getNumberOFRepeats)
@@ -36,19 +45,32 @@
 			number.value = parseInt(numberOfRepeats.value, 10);
 		}
 
+		
+		var elements = intervals.map(function (x, i) {
+		  return {
+		    element: x,
+		    max_index: intervals.count() - 1,
+		    index: i +1
+		  };
+		});
+
 		module.exports = {
 			numberOfRepeats: numberOfRepeats,
 			getNumberOFRepeats: getNumberOFRepeats,
-			number: number
+			number: number,
+			intervals: intervals,
+			elements: elements
 		};
 	</JavaScript>
+
+	
 	<Grid RowCount="2" ColumnCount="1">
-	    <DockPanel Row="0" Column="0" Color="#BBBBBB">
+	    <DockPanel Row="0" Column="0">
 	    	<StackPanel>
 		    	<MyTextInput PlaceholderText="Name of interval" Margin="10,10,10,0"/>
 
 		    	<DockPanel Margin="0,10,0,0">
-		    		<ButtonText Value="Intervall time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<ButtonText Value="Intervall time:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
 		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
 		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
@@ -56,7 +78,7 @@
 		    	</DockPanel>
 		    	
 		    	<DockPanel Margin="0,10,0,0">
-		    		<ButtonText Value="Pause time:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<ButtonText Value="Pause time:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
 		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" />
 		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60"/>	
@@ -64,21 +86,51 @@
 		    	</DockPanel>
 
 		    	<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-		    		<ButtonText Value="Number of intervals:" TextColor="Black" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<ButtonText Value="Number of intervals:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<Slider Minimum="1" Maximum="9" Margin="10,0,10,0" Value="{numberOfRepeats}" Width="130">
 		    			<Pressed>
 		    				<Scale Factor=".98" Duration=".1" />
 		    			</Pressed>
 		    		</Slider>
-		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0"/>
+		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
 		    	</StackPanel>
 	    	</StackPanel>
 	    	<MyRectangle Alignment="BottomCenter">
 	    		<ButtonText Value="Add to invervall" TextColor="DarkerFontColor" />
 	    	</MyRectangle>
 	    </DockPanel>
-	    <StackPanel Row="1" Column="0" Color="Blue">
 
+	    <StackPanel Row="1" Column="0">
+	    	<ScrollView>
+	    		<StackPanel>
+	    			<Each Items="{elements}" >
+	    				<Panel>
+	    					<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
+		    				<DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,20,10,0">
+		    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Left">
+		    						<ButtonText Value="{index}" Color="White" />
+		    						<ButtonText Value=". Interval: " Color="White" Margin="0,0,20,0"/>
+			    					<ButtonText Value="{element.mins}" Color="White" />
+			    					<ButtonText Value=":" Color="White" />
+			    					<ButtonText Value="{element.secs}" Color="White"/>
+		    					</StackPanel>
+		    				</DockPanel>
+	    				</Panel>
+	    				<Panel>
+	    					<DockPanel HitTestMode="LocalBoundsAndChildren">
+		    					<StackPanel Orientation="Horizontal" Margin="80,0,10,0" Dock="Left">
+		    						<ButtonText Value="{index}" Color="White" />
+		    						<ButtonText Value=". Pause: " Color="White" Margin="0,0,20,0"/>
+			    					<ButtonText Value="{element.pauseMins}" Color="White" />
+			    					<ButtonText Value=":" Color="White" />
+			    					<ButtonText Value="{element.pauseSecs}" Color="White"/>
+		    					</StackPanel>
+		    				</DockPanel>
+	    				</Panel>
+	    			</Each>
+	    			<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
+	    		</StackPanel>
+	    	</ScrollView>
 	    </StackPanel>
 	</Grid>
 </DockPanel>
