@@ -1,4 +1,5 @@
 <DockPanel>	
+	<JavaScript File="js/Storage.js"/>
 	<GeneralBackground />
 	
 	<DefaultTopStackPanel>
@@ -6,20 +7,28 @@
 	</DefaultTopStackPanel>
 
 	<StackPanel Margin="20,70,20,0">
-		<TextInput  TextAlignment="Center" PlaceholderText="Name"/>
+		<TextInput  Value="{intervalName}" TextAlignment="Center" PlaceholderText="Name"/>
 		<StackPanel Orientation="Horizontal" Alignment="Center">
 			<Text Value="Interval time" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="MM"/>
-			<TextInput PlaceholderText="SS"/>
+			<TextInput Value="{intervalMins}" PlaceholderText="MM"/>
+			<TextInput Value="{intervalSecs}" PlaceholderText="SS"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Alignment="Center">
 			<Text Value="Pause time" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="MM"/>
-			<TextInput PlaceholderText="SS"/>
+			<TextInput Value="{intervalPauseMins}" PlaceholderText="MM"/>
+			<TextInput Value="{intervalPauseSecs}" PlaceholderText="SS"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Alignment="Center">
 			<Text Value="Number of repeats" Alignment="Center" Margin="0,0,30,0"/>
-			<TextInput PlaceholderText="Nr"/>
+			<TextInput Value="{intervalReps}" PlaceholderText="Nr"/>
 		</StackPanel>
+
+		<IntervallListRectangle Clicked="{addInterval}">
+			<ButtonText Value="Add interval"/>
+		</IntervallListRectangle>
+
+		<IntervallListRectangle Clicked="{writeIntervalList}">
+			<ButtonText Value="Save intervals"/>
+		</IntervallListRectangle>
 	</StackPanel>
 </DockPanel>

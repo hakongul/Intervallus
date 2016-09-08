@@ -11,7 +11,7 @@ function interval(name, mins, secs, pauseMins, pauseSecs, repetitions) {
 	var repetitions = repetitions;
 }
 
-var intervalList = observable("troll");
+var intervalList = observable();
 var intervalName = observable();
 var intervalMins = observable();
 var intervalSecs = observable();
@@ -21,7 +21,11 @@ var intervalReps = observable();
 var intervalContent = observable();
 
 function writeIntervalList() {
-	var success = storage.writeSync("test.txt", intervalList.value);
+	var maketheString = intervalListToString("");
+
+	console.log("The string to write: " + maketheString);
+
+	var success = storage.writeSync("test.txt", maketheString);
 	if(success) {
 		console.log("Successfully wrote to file!");
 	} else {
@@ -35,7 +39,7 @@ function loadIntervalList() {
 	intervalContent.value = content.toString();
 }
 
-function addInterval(arg) {
+function addInterval() {
 	console.log("Adding item to intervalList!");
 	console.log("Interval name: " + intervalName.value);
 	console.log("Interval minutes: " + intervalMins.value);
@@ -43,6 +47,7 @@ function addInterval(arg) {
 	console.log("Pause minutes: " + intervalPauseMins.value);
 	console.log("Pause seconds: " + intervalPauseSecs.value);
 	console.log("Interval reps: " + intervalReps.value);
+
 	intervalList.add(new interval(intervalName.value, intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value, intervalReps.value));
 	console.log(intervalList.length);
 	console.log("Interval added!");
@@ -50,7 +55,29 @@ function addInterval(arg) {
 
 function removeInterval(arg) {
 	console.log("Removing item from intervalList");
+	console.log("Data in args: " + arg.data);
 	intervalList.tryRemove(arg.data);
+}
+
+function intervalListToString(args) {
+	var theString = intervalList.toString();
+	console.log("intervalList.toString: " + theString);
+	console.log(theString);
+
+	var theString2 = intervalList.value;
+	console.log("intervalList.value: " + theString2);
+
+	var theString3 = intervalList.value.toString;
+	console.log("intervalList.value.toString: " + theString3);
+
+	var backToList = fromStringToIntervalList(theString);
+	console.log(backToList);
+
+	return theString;
+}
+
+function fromStringToIntervalList(intlistString) {
+	return "This is where the magic happens, biatch";
 }
 
 module.exports = {
@@ -65,5 +92,7 @@ module.exports = {
 	writeIntervalList: writeIntervalList,
 	loadIntervalList: loadIntervalList,
 	addInterval: addInterval,
-	removeInterval: removeInterval
+	removeInterval: removeInterval,
+	intervalListToString: intervalListToString,
+	fromStringToIntervalList: fromStringToIntervalList
 };
