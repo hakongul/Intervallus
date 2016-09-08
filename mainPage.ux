@@ -1,0 +1,30 @@
+<DockPanel>
+	<MainPageBackground />
+
+	<DefaultTopStackPanel>
+			<DefaultTopText Value="Intervallus"/>
+	</DefaultTopStackPanel>
+
+	<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
+		<MainPageRectangle>
+			<ButtonText Value="Create new interval"/>
+			<Clicked>
+				<NavigateTo Target="newInterval" />
+			</Clicked>
+		</MainPageRectangle>
+
+		<MainPageRectangle>
+			<ButtonText Value="My saved intervals"/>
+			<Clicked>
+				<NavigateTo Target="mySavedIntervalls" />
+			</Clicked>
+		</MainPageRectangle>
+
+		<MainPageRectangle>
+			<ButtonText Value="Standard intervals"/>
+			<Clicked>
+				<NavigateTo Target="standardIntervalls" />
+			</Clicked>
+		</MainPageRectangle>			
+	</StackPanel>
+</DockPanel>

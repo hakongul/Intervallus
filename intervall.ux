@@ -1,0 +1,20 @@
+<DockPanel>
+	<GeneralBackground />
+	
+	<DefaultTopStackPanel>
+		<DefaultTopText Value="Interval"/>
+	</DefaultTopStackPanel>
+
+	<StackPanel Margin="20,70,20,0">
+		<Text TextAlignment="Center" Value="Clock: 10:00"/>
+		<StackPanel Orientation="Horizontal" Alignment="Center">
+			<Text Value="1." Alignment="Center" Margin="0,0,30,0"/>
+			<Text Value="Her skal det status bar paa tiden" />
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Alignment="Center">
+			<Text Value="2." Alignment="Center" Margin="0,0,30,0"/>
+			<Text Value="Her skal det status bar paa tiden" />
+		</StackPanel>
+		
+	</StackPanel>
+</DockPanel>

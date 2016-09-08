@@ -1,0 +1,22 @@
+<DockPanel>
+	<GeneralBackground />
+	
+	<DefaultTopStackPanel>
+		<DefaultTopText Value="Saved Intervals"/>
+	</DefaultTopStackPanel>
+
+	<ScrollView>
+		<StackPanel Margin="0,10,0,0">
+			<JavaScript File="MainView.js"/>
+			
+			<Each Items="{buttons}">
+				<IntervallListRectangle>
+					<ButtonText Value="{text}"/>
+					<Clicked>
+						<NavigateTo Target="intervall" />
+					</Clicked>
+				</IntervallListRectangle>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+</DockPanel>

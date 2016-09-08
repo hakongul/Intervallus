@@ -1,0 +1,23 @@
+<DockPanel>
+	<GeneralBackground />
+
+	<DefaultTopStackPanel>
+		<DefaultTopText Value="Standard Intervals"/>
+	</DefaultTopStackPanel>
+
+	<StackPanel>
+		<IntervallListRectangle>
+			<ButtonText Value="4x4"/>
+			<Clicked>
+				<NavigateTo Target="intervall" />
+			</Clicked>
+		</IntervallListRectangle>
+
+		<IntervallListRectangle>
+			<ButtonText Value="6x6"/>
+			<Clicked>
+				<NavigateTo Target="intervall" />
+			</Clicked>
+		</IntervallListRectangle>
+	</StackPanel>
+</DockPanel>
