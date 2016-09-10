@@ -5,7 +5,6 @@
     "FuseJS"
   ],
   "Includes": [
-    "*",
-    "js/mockIntervals.js:Bundle"
+    "*"
   ]
 }

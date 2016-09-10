@@ -69,7 +69,8 @@ function saveInterval() {
 	intervalPauseSecs.value = "";
 	intervalRepsSliderValue.value = 1;
 	intervalName.value = "";
-	intervalLegListTest.clean;
+	//TODO denne funker ikke heeelt...
+	intervalLegListTest.value = null;
 
 	//TODO goBack, krever ny refakturering av navigasjon ved å legge til en router, slik at man kan navigere med javascript, se:
 	//https://www.fusetools.com/docs/navigation/navigation
