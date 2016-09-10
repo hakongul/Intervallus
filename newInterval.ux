@@ -99,7 +99,7 @@
 	    		</MyRectangle>
 	    	
 	    
-		    	<ScrollView MaxHeight="300" Alignment="Top">
+		    	<ScrollView MaxHeight="290" Alignment="Top">
 		    		<StackPanel>
 		    			<Each Items="{elements}" >
 		    				<Panel>
