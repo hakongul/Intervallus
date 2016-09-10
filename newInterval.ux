@@ -1,11 +1,12 @@
 <DockPanel>	
 	<Image File="Assets/test.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<JavaScript File="js/NewInterval.js"/>
 	
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="New Interval"/>
 	</DefaultTopStackPanel>
 
-	<TextInput ux:Class="MyTextInput" FontSize="20" PlaceholderColor="#BBB" Padding="5" TextAlignment="Center">
+	<TextInput ux:Class="NewIntervalTextInput" FontSize="20" PlaceholderColor="#BBB" Padding="5" TextAlignment="Center">
 	    <Rectangle Layer="Background" CornerRadius="7">
 	        <Stroke Width="3" Color="#AAA" />
 	        <SolidColor Color="#EEE" />    
@@ -15,184 +16,94 @@
         </Pressed>
 	</TextInput>
 
-	<Rectangle ux:Class="MyRectangle" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10" Color="#DDD">
+	<Rectangle ux:Class="NewIntervalRectangle" Margin="10,10,10,10" Width="300" Height="43" CornerRadius="10" Color="#DDD">
 		<Stroke Width="3" Color="#555" />
 		<WhilePressed>
 			<Scale Factor=".95" Duration=".1" />
 		</WhilePressed>
 	</Rectangle>
 
-	<JavaScript>
-		var Observable = require("FuseJS/Observable");
-		var mock = require("js/mockIntervals")
-
-		var intervals = Observable();
-
-		mock.fetchInterval(function(newIntervals) {
-			newIntervals.forEach(function(interval) {
-				intervals.add(interval);
-			});
-		});
-
-		var numberOfRepeats = Observable();
-		var number = Observable();
-		
-		numberOfRepeats.value = 1;
-
-		numberOfRepeats.addSubscriber(getNumberOFRepeats)
-
-		function getNumberOFRepeats() {
-			number.value = parseInt(numberOfRepeats.value, 10);
-		}
-
-		
-		var elements = intervals.map(function (x, i) {
-		  return {
-		    element: x,
-		    max_index: intervals.count() - 1,
-		    index: i +1
-		  };
-		});
+	<Text ux:Class="NewIntervalText" FontSize="20" Alignment="Center" TextColor="White"/>
 
 
+	<Rectangle ux:Class="ImageRectangle" Margin="5,0,5,0" Width="25" Height="25">
+		<WhilePressed>
+			<Scale Factor=".9" Duration=".1" />
+		</WhilePressed>
+	</Rectangle>
 
-
-		var intervalLegTest = function (mins, secs, pauseMins, pauseSecs, repetitions) {
-			this.mins = mins;
-			this.secs = secs;
-			this.pauseMins = pauseMins;
-			this.pauseSecs = pauseSecs;
-			this.repetitions = repetitions;
-		}
-
-		var intervalTest = function(name, intervalLegList) {
-			this.name = name;
-			this.intervalLegList = intervalLegList;
-		}
-
-
-		var intervalLegListTest = Observable();
-		var intervalName = Observable();
-		var intervalMins = Observable();
-		var intervalSecs = Observable();
-		var intervalPauseMins = Observable();
-		var intervalPauseSecs = Observable();
-		var intervalTestInstans = Observable();
-
-		function addInterval() {
-			console.log("Adding item to intervalList!");
-			console.log("Interval name: " + intervalName.value);
-			console.log("Interval minutes: " + intervalMins.value);
-			console.log("Interval seconds: " + intervalSecs.value);
-			console.log("Pause minutes: " + intervalPauseMins.value);
-			console.log("Pause seconds: " + intervalPauseSecs.value);
-			console.log("Interval reps: " + numberOfRepeats.value);
-
-			intervalLegListTest.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value, numberOfRepeats.value));
-			console.log(intervalLegListTest.length);
-			console.log("Interval added!");
-		}
-
-		function saveInterval() {
-			console.log("Save interval");
-			intervalTestInstans.value = new intervalTest(intervalName.value, intervalLegListTest.value);
-			console.log(intervalTestInstans.value)
-			console.log("Write to disk");
-		}
-
-
-		var elementsTest = intervalLegListTest.map(function (x, i) {
-		  return {
-		    element: x,
-		    max_index: intervalLegListTest.count() - 1,
-		    index: i +1
-		  };
-		});
-
-
-
-
-		module.exports = {
-			numberOfRepeats: numberOfRepeats,
-			getNumberOFRepeats: getNumberOFRepeats,
-			number: number,
-			intervals: intervals,
-			elements: elements,
-			intervalLegTest: intervalLegTest,
-			intervalLegListTest: intervalLegListTest,
-			intervalName: intervalName,
-			intervalMins: intervalMins,
-			intervalSecs: intervalSecs,
-			intervalPauseMins: intervalPauseMins,
-			intervalPauseSecs: intervalPauseSecs,
-			addInterval: addInterval,
-			elementsTest: elementsTest,
-			saveInterval: saveInterval
-		};
-	</JavaScript>
-
+	
 	
 	<DockPanel>
 	    <DockPanel Alignment="Top">
 	    	<StackPanel>
-		    	<MyTextInput PlaceholderText="Name of interval" Margin="10,10,10,0" Value="{intervalName}"/>
+		    	<NewIntervalTextInput PlaceholderText="Name of interval" Margin="10,10,10,0" Value="{intervalName}"/>
 
 		    	<DockPanel Margin="0,10,0,0">
-		    		<ButtonText Value="Intervall time:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<NewIntervalText Value="Intervall time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalMins}"/>
-		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalSecs}"/>	
+		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalMins}"/>
+		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalSecs}"/>	
 		    		</StackPanel>
 		    	</DockPanel>
 		    	
 		    	<DockPanel Margin="0,10,0,0">
-		    		<ButtonText Value="Pause time:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<NewIntervalText Value="Pause time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-		    			<MyTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalPauseMins}"/>
-		    			<MyTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalPauseSecs}"/>	
+		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalPauseMins}"/>
+		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalPauseSecs}"/>	
 		    		</StackPanel>
 		    	</DockPanel>
 
 		    	<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-		    		<ButtonText Value="Number of intervals:" TextColor="White" Alignment="CenterLeft" Margin="20,0,0,0"/>
-		    		<Slider Minimum="1" Maximum="9" Margin="10,0,10,0" Value="{numberOfRepeats}" Width="130">
+		    		<NewIntervalText Value="Number of intervals:" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<Slider Minimum="1" Maximum="9" Margin="10,0,10,0" Value="{intervalRepsSliderValue}" Width="130">
 		    			<Pressed>
 		    				<Scale Factor=".98" Duration=".1" />
 		    			</Pressed>
 		    		</Slider>
-		    		<Text Value="{number}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
+		    		<Text Value="{intervalReps}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
 		    	</StackPanel>
-		    	<MyRectangle Alignment="BottomCenter" Margin="10" Width="180" Clicked="{addInterval}">
+		    	<NewIntervalRectangle Alignment="BottomCenter" Margin="10" Width="180" Clicked="{addInterval}">
 	    			<ButtonText Value="Add to inverval" TextColor="DarkerFontColor" />
-	    		</MyRectangle>
-	    	
+	    		</NewIntervalRectangle>
 	    
 		    	<ScrollView MaxHeight="290" Alignment="Top">
 		    		<StackPanel>
-		    			<Each Items="{elementsTest}" >
+		    			<Each Items="{intervalLegListElements}" >
 		    				<Panel>
 		    					<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
 			    				<DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,20,10,0">
 			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Left">
-			    						<ButtonText Value="{index}" Color="White" />
-			    						<ButtonText Value=". Interval Leg: " Color="White" Margin="0,0,20,0"/>
-				    					<ButtonText Value="{element.mins}" Color="White" />
-				    					<ButtonText Value=":" Color="White" />
-				    					<ButtonText Value="{element.secs}" Color="White"/>
+			    						<NewIntervalText Value="{index}" />
+			    						<NewIntervalText Value=". Interval Leg: " Margin="0,0,20,0"/>
+				    					<NewIntervalText Value="{element.mins}" />
+				    					<NewIntervalText Value=":" />
+				    					<NewIntervalText Value="{element.secs}" />
 			    					</StackPanel>
+			    					
 			    				</DockPanel>
 		    				</Panel>
 		    				<Panel>
 		    					<DockPanel HitTestMode="LocalBoundsAndChildren">
 			    					<StackPanel Orientation="Horizontal" Margin="80,0,10,0" Dock="Left">
-			    						<ButtonText Value="{index}" Color="White" />
-			    						<ButtonText Value=". Pause: " Color="White" Margin="0,0,20,0"/>
-				    					<ButtonText Value="{element.pauseMins}" Color="White" />
-				    					<ButtonText Value=":" Color="White" />
-				    					<ButtonText Value="{element.pauseSecs}" Color="White"/>
+			    						<NewIntervalText Value="{index}" />
+			    						<NewIntervalText Value=". Pause: " Margin="0,0,20,0"/>
+				    					<NewIntervalText Value="{element.pauseMins}" />
+				    					<NewIntervalText Value=":" />
+				    					<NewIntervalText Value="{element.pauseSecs}" />
 			    					</StackPanel>
+			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Right">
+				    					<ImageRectangle>
+											<ImageFill File="Assets/edit.png" StretchMode="UniformToFill"/>
+										</ImageRectangle>
+										<ImageRectangle>
+											<ImageFill File="Assets/delete.png" StretchMode="UniformToFill"/>
+										</ImageRectangle>
+									</StackPanel>
 			    				</DockPanel>
 		    				</Panel>
+
 		    			</Each>
 		    			<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
 		    		</StackPanel>
@@ -200,9 +111,9 @@
 	    	</StackPanel>
 	    </DockPanel>
  		<StackPanel Alignment="BottomCenter" Margin="10">
-    		<MyRectangle Alignment="BottomCenter">
+    		<NewIntervalRectangle Alignment="BottomCenter">
 	    		<ButtonText Value="Save interval" TextColor="DarkerFontColor" Clicked="{saveInterval}" />
-	    	</MyRectangle>
+	    	</NewIntervalRectangle>
 	    </StackPanel>		
 	</DockPanel>
 </DockPanel>
