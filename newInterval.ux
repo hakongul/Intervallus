@@ -30,5 +30,38 @@
 		<IntervallListRectangle Clicked="{writeIntervalList}">
 			<ButtonText Value="Save intervals"/>
 		</IntervallListRectangle>
+
+
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{intervalList}">
+					<Grid ux:Name="itemPanel" Columns="auto,1*,auto" Alignment="Top" Height="60" Opacity="1" BoxSizing="Limit" LimitHeight="100%">
+						<Panel>
+							<Panel Alignment="Left">
+								<Rectangle ux:Name="textLine" Height="1" Opacity="0" Margin="30,0,0,0" Fill="#bbb"/>
+								<Text ux:Name="itemText" Value="{mins}" Alignment="CenterLeft" TextAlignment="Left" Margin="30,0,0,0" FontSize="20" TextColor="#999" TextWrapping="Wrap" />
+							</Panel>
+						</Panel>
+
+						<IntervallListRectangle Alignment="CenterRight" Clicked="{removeInterval}" Width="60" Height="60"
+								HitTestMode="LocalBoundsAndChildren">
+							<ButtonText Value="Remove"/>
+						</IntervallListRectangle>
+
+						<LayoutAnimation>
+							<Move RelativeTo="LayoutChange" Y="1" Duration="0.6" Easing="BounceIn"/>
+						</LayoutAnimation>
+						<AddingAnimation>
+							<Move RelativeTo="Size" X="1" Duration="0.3" Easing="CircularInOut" />
+						</AddingAnimation>
+						<RemovingAnimation>
+							<Move RelativeTo="Size" X="1" Duration="0.3" Easing="CircularInOut" />
+						</RemovingAnimation>
+
+						<Rectangle Height="1" ColumnSpan="3" Row="0" Alignment="Bottom" Fill="#ddd"/>
+					</Grid>
+				</Each>
+			</StackPanel>
+		</ScrollView>
 	</StackPanel>
 </DockPanel>

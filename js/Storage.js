@@ -1,14 +1,11 @@
 var storage = require("FuseJS/Storage")
 var observable = require("FuseJS/Observable")
 
-function interval(name, mins, secs, pauseMins, pauseSecs, repetitions) {
-	var self = this;
-	var name = name;
-	var mins = mins;
-	var secs = secs;
-	var pauseMins = pauseMins;
-	var pauseSecs = pauseSecs;
-	var repetitions = repetitions;
+function interval(mins, secs, pauseMins, pauseSecs) {
+	this.mins = mins;
+	this.secs = secs;
+	this.pauseMins = pauseMins;
+	this.pauseSecs = pauseSecs;
 }
 
 var intervalList = observable();
@@ -21,63 +18,101 @@ var intervalReps = observable();
 var intervalContent = observable();
 
 function writeIntervalList() {
-	var maketheString = intervalListToString("");
+	var maketheString = intervalListToString();
 
-	console.log("The string to write: " + maketheString);
-
-	var success = storage.writeSync("test.txt", maketheString);
-	if(success) {
+	var result = storage.writeSync("test.txt", maketheString);
+	if(result) {
 		console.log("Successfully wrote to file!");
+		console.log("Wrote: " + maketheString);
 	} else {
 		console.log("Something went wrong when trying to write to file");
 	}
+
+	loadIntervalList();
 }
 
 function loadIntervalList() {
 	var content = storage.readSync("test.txt");
 	console.log("Successfully read from file!");
-	intervalContent.value = content.toString();
+	console.log("Read this: " + content);
+	fromStringToIntervalList(content);
 }
 
 function addInterval() {
 	console.log("Adding item to intervalList!");
-	console.log("Interval name: " + intervalName.value);
-	console.log("Interval minutes: " + intervalMins.value);
-	console.log("Interval seconds: " + intervalSecs.value);
-	console.log("Pause minutes: " + intervalPauseMins.value);
-	console.log("Pause seconds: " + intervalPauseSecs.value);
 	console.log("Interval reps: " + intervalReps.value);
 
-	intervalList.add(new interval(intervalName.value, intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value, intervalReps.value));
-	console.log(intervalList.length);
-	console.log("Interval added!");
+	for(x=1; x<=intervalReps.value; x++){
+		console.log("Iteration: " + x)
+		console.log("Interval minutes: " + intervalMins.value);
+		console.log("Interval seconds: " + intervalSecs.value);
+		console.log("Pause minutes: " + intervalPauseMins.value);
+		console.log("Pause seconds: " + intervalPauseSecs.value);
+	
+		intervalList.add(new interval(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+		console.log("Interval added!");
+	}
+
+	console.log("IntervalList length: " + intervalList.length);
 }
 
-function removeInterval(arg) {
+function removeInterval(intervalItem) {
 	console.log("Removing item from intervalList");
-	console.log("Data in args: " + arg.data);
-	intervalList.tryRemove(arg.data);
+	console.log("Data in args: " + intervalItem.data.mins + "m, " + intervalItem.data.secs + "s");
+	intervalList.tryRemove(intervalItem.data);
+	console.log("IntervalList length: " + intervalList.length);
 }
 
 function intervalListToString(args) {
-	var theString = intervalList.toString();
-	console.log("intervalList.toString: " + theString);
-	console.log(theString);
+	var intervalString = "";
 
-	var theString2 = intervalList.value;
-	console.log("intervalList.value: " + theString2);
+	var counter = 0;
+	var listLength = intervalList.length-1;
 
-	var theString3 = intervalList.value.toString;
-	console.log("intervalList.value.toString: " + theString3);
+	intervalList.forEach(function(x) {
+		console.log("counter is: " + counter);
+		console.log("List length is: " + listLength);
+		if(counter == listLength){
+			intervalString += (x.mins + "," + x.secs + "," + x.pauseMins + "," + x.pauseSecs);
+			console.log("String is now: " + intervalString);
+		} else {
+			intervalString += (x.mins + "," + x.secs + "," + x.pauseMins + "," + x.pauseSecs + ",");
+			console.log("String is now: " + intervalString);
+		}
+		counter++;
+	});
 
-	var backToList = fromStringToIntervalList(theString);
-	console.log(backToList);
-
-	return theString;
+	return intervalString
 }
 
 function fromStringToIntervalList(intlistString) {
-	return "This is where the magic happens, biatch";
+	console.log("Attempting to recreate the observable");
+	console.log("Data to restore from: " + intlistString);
+
+	for(x=0; x<=intervalList.length; x++){
+		intervalList.forEach(function(y){
+			intervalList.remove(y);
+		});
+		x=0;
+	}
+
+	var test = intervalList.length;
+	console.log("intervalList should be empty: " + test);
+
+	var array = intlistString.split(',');
+	var al = array.length-1;
+	console.log("Length of array: " + al);
+	for(i=0; i < al; i+=4){
+		console.log("Value of i: " + i);
+		var m = array[i];
+		var s = array[i+1];
+		var pm = array[i+2];
+		var ps = array[i+3];
+
+		console.log("Values: " + m + "m, " + s + "s, " + pm + "pm, " + ps + "ps");
+		intervalList.add(new interval(m, s, pm, ps));
+		console.log("Added item to intervalList!");
+	}
 }
 
 module.exports = {
