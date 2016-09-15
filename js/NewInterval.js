@@ -85,6 +85,16 @@ var intervalLegListElements = intervalLegListTest.map(function (x, i) {
   };
 });
 
+function editInterval(arg) {
+	console.log("lool");
+}
+
+function removeInterval(interval) {
+	console.log("Removing interval");
+	console.log("hoggorm 1: " + interval.data.element.mins);
+	intervalLegListTest.remove(interval.data.element);
+}
+
 
 module.exports = {
 	intervalLegListTest: intervalLegListTest,
@@ -97,5 +107,6 @@ module.exports = {
 	intervalRepsSliderValue: intervalRepsSliderValue,
 	addInterval: addInterval,
 	intervalLegListElements: intervalLegListElements,
-	saveInterval: saveInterval
+	saveInterval: saveInterval,
+	removeInterval: removeInterval
 };
