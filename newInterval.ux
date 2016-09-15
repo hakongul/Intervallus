@@ -65,9 +65,10 @@
 		    		<Text Value="{intervalReps}" Alignment="CenterRight" Margin="0,0,10,0" Color="White"/>
 		    	</StackPanel>
 		    	<NewIntervalRectangle Alignment="BottomCenter" Margin="10" Width="180" Clicked="{addInterval}">
-	    			<ButtonText Value="Add to inverval" TextColor="DarkerFontColor" />
+	    			<ButtonText Value="{addIntervalButton}" TextColor="DarkerFontColor" />
 	    		</NewIntervalRectangle>
 	    		
+
 
 	    		<Rectangle Fill="White" Opacity="0.5" Height="2" Alignment="Top" Margin="0,0,0,0"/>
 		    	<ScrollView MaxHeight="280" Alignment="Top">
@@ -94,7 +95,7 @@
 				    					<NewIntervalText Value="{element.pauseSecs}" />
 			    					</StackPanel>
 			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Right">
-				    					<ImageRectangle>
+				    					<ImageRectangle Clicked="{editInterval}">
 											<ImageFill File="Assets/edit.png" StretchMode="UniformToFill"/>
 										</ImageRectangle>
 										<ImageRectangle Clicked="{removeInterval}">

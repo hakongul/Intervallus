@@ -8,13 +8,28 @@ var intervalPauseMins = Observable();
 var intervalPauseSecs = Observable();
 var intervalReps = Observable();
 var intervalRepsSliderValue = Observable();
+var addIntervalButton = Observable();
+var areEditingInterval = Observable();
+var indexOfInterval = Observable();
+
+addIntervalButton.value = "Add to inverval";
+areEditingInterval.value = false;
 
 intervalRepsSliderValue.value = 1;
 
 intervalRepsSliderValue.addSubscriber(getNumberOFRepeats)
+areEditingInterval.addSubscriber(toggleAddIntervalButtonText)
 
 function getNumberOFRepeats() {
 	intervalReps.value = parseInt(intervalRepsSliderValue.value, 10);
+}
+
+function toggleAddIntervalButtonText(){
+	if(areEditingInterval.value) {
+		addIntervalButton.value = "Update interval leg";
+	} else {
+		addIntervalButton.value = "Add to inverval";
+	}
 }
 
 var intervalLegTest = function (mins, secs, pauseMins, pauseSecs) {
@@ -40,19 +55,47 @@ function addInterval() {
 	console.log("Pause seconds: " + intervalPauseSecs.value);
 	console.log("Interval reps: " + intervalReps.value);
 
-	for(i=1;i<=intervalReps.value;i++)
+	if(areEditingInterval.value) {
+		console.log("edit mode");
+		
+		var tempIntervalList = Observable();
+
+	    for(i=0;i<intervalLegListTest.length;i++){
+	    	if(i == indexOfInterval.value) {
+				tempIntervalList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+			} else {
+				tempIntervalList.add(intervalLegListTest.getAt(i));
+			} 
+	    }
+
+	    deleteAllIntervallLegs();
+
+	    tempIntervalList.forEach(function(interval) {
+			console.log("hoggorm 123");
+	        intervalLegListTest.add(interval)
+	    });
+
+	} else {
+		for(i=1;i<=intervalReps.value;i++)
 		intervalLegListTest.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+	}
+	
 
 	console.log(intervalLegListTest.length);
 	console.log("Interval added!");
 
+	clearInputElements();
+	areEditingInterval.value = false;
+
+	console.log("cleaned up!");
+}
+
+function clearInputElements() {
 	intervalMins.value = "";
 	intervalSecs.value = "";
 	intervalPauseMins.value = "";
 	intervalPauseSecs.value = "";
 	intervalRepsSliderValue.value = 1;
-
-	console.log("cleaned up!");
 }
 
 function saveInterval() {
@@ -63,17 +106,22 @@ function saveInterval() {
 
 	console.log("Time to clean up");
 
-	intervalMins.value = "";
-	intervalSecs.value = "";
-	intervalPauseMins.value = "";
-	intervalPauseSecs.value = "";
-	intervalRepsSliderValue.value = 1;
+	clearInputElements();
 	intervalName.value = "";
-	//TODO denne funker ikke heeelt...
-	intervalLegListTest.value = null;
+	deleteAllIntervallLegs();
+
 
 	//TODO goBack, krever ny refakturering av navigasjon ved å legge til en router, slik at man kan navigere med javascript, se:
 	//https://www.fusetools.com/docs/navigation/navigation
+}
+
+function deleteAllIntervallLegs() {
+	for(i=0; i<=intervalLegListTest.length; i++){
+		intervalLegListTest.forEach(function(place) {
+			intervalLegListTest.remove(place);
+	    });
+	    i = 0;
+	}
 }
 
 
@@ -85,13 +133,29 @@ var intervalLegListElements = intervalLegListTest.map(function (x, i) {
   };
 });
 
-function editInterval(arg) {
-	console.log("lool");
+function editInterval(interval) {
+	console.log("edit interval with index " + interval.data.index);
+	intervalMins.value = interval.data.element.mins;
+	intervalSecs.value = interval.data.element.secs;
+	intervalPauseMins.value = interval.data.element.pauseMins;
+	intervalPauseSecs.value = interval.data.element.pauseSecs;
+
+	areEditingInterval.value = true;
+	indexOfInterval.value = interval.data.index-1;
+	
+	console.log("Interval minutes: " + intervalMins.value);
+	console.log("Interval seconds: " + intervalSecs.value);
+	console.log("Pause minutes: " + intervalPauseMins.value);
+	console.log("Pause seconds: " + intervalPauseSecs.value);
 }
 
 function removeInterval(interval) {
 	console.log("Removing interval");
 	console.log("hoggorm 1: " + interval.data.element.mins);
+	if(areEditingInterval && interval.data.index-1 == indexOfInterval.value) {
+		areEditingInterval.value = false;
+		clearInputElements();
+	}
 	intervalLegListTest.remove(interval.data.element);
 }
 
@@ -108,5 +172,7 @@ module.exports = {
 	addInterval: addInterval,
 	intervalLegListElements: intervalLegListElements,
 	saveInterval: saveInterval,
-	removeInterval: removeInterval
+	removeInterval: removeInterval,
+	editInterval: editInterval,
+	addIntervalButton: addIntervalButton
 };
