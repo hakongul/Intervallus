@@ -50,10 +50,10 @@ function addInterval() {
 	console.log("Adding item to intervalList!");
 
 	if(areEditingInterval.value) {
+		//TODO rydd opp i dette....
 		console.log("edit mode");
 		
 		var tempIntervalList = Observable();
-
 	    for(i=0;i<intervalLegListTest.length;i++){
 	    	if(i == indexOfInterval.value) {
 				tempIntervalList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
@@ -65,7 +65,6 @@ function addInterval() {
 	    deleteAllIntervallLegs();
 
 	    tempIntervalList.forEach(function(interval) {
-			console.log("hoggorm 123");
 	        intervalLegListTest.add(interval)
 	    });
 
@@ -103,6 +102,8 @@ function removeInterval(interval) {
 	if(areEditingInterval && interval.data.index-1 == indexOfInterval.value) {
 		areEditingInterval.value = false;
 		clearInputElements();
+	} else if(areEditingInterval && interval.data.index-1 < indexOfInterval.value) {
+		indexOfInterval.value = indexOfInterval.value - 1;
 	}
 	intervalLegListTest.remove(interval.data.element);
 }
