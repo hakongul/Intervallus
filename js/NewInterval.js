@@ -48,12 +48,6 @@ var intervalTest = function(name, intervalLegList) {
 
 function addInterval() {
 	console.log("Adding item to intervalList!");
-	console.log("Interval name: " + intervalName.value);
-	console.log("Interval minutes: " + intervalMins.value);
-	console.log("Interval seconds: " + intervalSecs.value);
-	console.log("Pause minutes: " + intervalPauseMins.value);
-	console.log("Pause seconds: " + intervalPauseSecs.value);
-	console.log("Interval reps: " + intervalReps.value);
 
 	if(areEditingInterval.value) {
 		console.log("edit mode");
@@ -90,12 +84,27 @@ function addInterval() {
 	console.log("cleaned up!");
 }
 
-function clearInputElements() {
-	intervalMins.value = "";
-	intervalSecs.value = "";
-	intervalPauseMins.value = "";
-	intervalPauseSecs.value = "";
-	intervalRepsSliderValue.value = 1;
+
+
+function editInterval(interval) {
+	console.log("edit interval with index " + interval.data.index);
+	intervalMins.value = interval.data.element.mins;
+	intervalSecs.value = interval.data.element.secs;
+	intervalPauseMins.value = interval.data.element.pauseMins;
+	intervalPauseSecs.value = interval.data.element.pauseSecs;
+
+	areEditingInterval.value = true;
+	indexOfInterval.value = interval.data.index-1;
+}
+
+function removeInterval(interval) {
+	console.log("Removing interval");
+	console.log("hoggorm 1: " + interval.data.element.mins);
+	if(areEditingInterval && interval.data.index-1 == indexOfInterval.value) {
+		areEditingInterval.value = false;
+		clearInputElements();
+	}
+	intervalLegListTest.remove(interval.data.element);
 }
 
 function saveInterval() {
@@ -110,9 +119,16 @@ function saveInterval() {
 	intervalName.value = "";
 	deleteAllIntervallLegs();
 
-
 	//TODO goBack, krever ny refakturering av navigasjon ved å legge til en router, slik at man kan navigere med javascript, se:
 	//https://www.fusetools.com/docs/navigation/navigation
+}
+
+function clearInputElements() {
+	intervalMins.value = "";
+	intervalSecs.value = "";
+	intervalPauseMins.value = "";
+	intervalPauseSecs.value = "";
+	intervalRepsSliderValue.value = 1;
 }
 
 function deleteAllIntervallLegs() {
@@ -124,7 +140,6 @@ function deleteAllIntervallLegs() {
 	}
 }
 
-
 var intervalLegListElements = intervalLegListTest.map(function (x, i) {
   return {
     element: x,
@@ -132,32 +147,6 @@ var intervalLegListElements = intervalLegListTest.map(function (x, i) {
     index: i +1
   };
 });
-
-function editInterval(interval) {
-	console.log("edit interval with index " + interval.data.index);
-	intervalMins.value = interval.data.element.mins;
-	intervalSecs.value = interval.data.element.secs;
-	intervalPauseMins.value = interval.data.element.pauseMins;
-	intervalPauseSecs.value = interval.data.element.pauseSecs;
-
-	areEditingInterval.value = true;
-	indexOfInterval.value = interval.data.index-1;
-	
-	console.log("Interval minutes: " + intervalMins.value);
-	console.log("Interval seconds: " + intervalSecs.value);
-	console.log("Pause minutes: " + intervalPauseMins.value);
-	console.log("Pause seconds: " + intervalPauseSecs.value);
-}
-
-function removeInterval(interval) {
-	console.log("Removing interval");
-	console.log("hoggorm 1: " + interval.data.element.mins);
-	if(areEditingInterval && interval.data.index-1 == indexOfInterval.value) {
-		areEditingInterval.value = false;
-		clearInputElements();
-	}
-	intervalLegListTest.remove(interval.data.element);
-}
 
 
 module.exports = {
