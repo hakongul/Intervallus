@@ -83,7 +83,6 @@
 				    					<NewIntervalText Value=":" />
 				    					<NewIntervalText Value="{element.secs}" />
 			    					</StackPanel>
-			    					
 			    				</DockPanel>
 		    				</Panel>
 		    				<Panel>
@@ -105,16 +104,26 @@
 			    				</DockPanel>
 		    				</Panel>
 		    				<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,0"/>
+
+							<AddingAnimation>
+								<Move RelativeTo="Size" X="1" Duration="0.15" Easing="QuadraticIn" />
+							</AddingAnimation>
+							<RemovingAnimation>
+								<Move RelativeTo="Size" X="1" Duration="0.15" Easing="QuadraticOut" />
+							</RemovingAnimation>
 		    			</Each>
-		    			
 		    		</StackPanel>
 		    	</ScrollView>
 	    	</StackPanel>
 	    </DockPanel>
+
+
  		<StackPanel Alignment="BottomCenter" Margin="10">
     		<NewIntervalRectangle Alignment="BottomCenter">
 	    		<ButtonText Value="Save interval" TextColor="DarkerFontColor" Clicked="{saveInterval}" />
 	    	</NewIntervalRectangle>
-	    </StackPanel>		
+	    </StackPanel>	
+
+
 	</DockPanel>
 </DockPanel>
