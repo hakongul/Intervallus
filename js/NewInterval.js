@@ -1,6 +1,6 @@
 var Observable = require("FuseJS/Observable");
 
-var intervalLegListTest = Observable();
+var intervalLegList = Observable();
 var intervalName = Observable();
 var intervalMins = Observable();
 var intervalSecs = Observable();
@@ -44,44 +44,56 @@ var intervalTest = function(name, intervalLegList) {
 	this.intervalLegList = intervalLegList;
 }
 
+function validateInput() {
+	if(intervalMins.value == null || intervalMins.value == "") {
+		intervalMins.value = 0;
+	}
+	if(intervalSecs.value == null || intervalSecs.value == "") {
+		intervalSecs.value = 0;
+	}
+	if(intervalPauseMins.value == null || intervalPauseMins.value == "") {
+		intervalPauseMins.value = 0;
+	}
+	if(intervalPauseSecs.value == null || intervalPauseSecs.value == "") {
+		intervalPauseSecs.value = 0;
+	}
+
+	//TODO Legg til validering paa at intervall og pause ikke kan være på 0 sekunder
+	//TODO Legg til validering paa at input er tall
+}
+
 
 
 function addInterval() {
-	console.log("Adding item to intervalList!");
+	
+	validateInput()
 
 	if(areEditingInterval.value) {
-		console.log("edit mode");
-		
+		console.log("Edit interval Leg");
 		var tempIntervalList = Observable();
-
-	    for(i=0;i<intervalLegListTest.length;i++){
+	    for(i=0;i<intervalLegList.length;i++){
 	    	if(i == indexOfInterval.value) {
 				tempIntervalList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
 			} else {
-				tempIntervalList.add(intervalLegListTest.getAt(i));
+				tempIntervalList.add(intervalLegList.getAt(i));
 			} 
 	    }
 
 	    deleteAllIntervallLegs();
 
 	    tempIntervalList.forEach(function(interval) {
-			console.log("hoggorm 123");
-	        intervalLegListTest.add(interval)
+	        intervalLegList.add(interval)
 	    });
 
 	} else {
+		console.log("Adding item to intervalList!");
 		for(i=1;i<=intervalReps.value;i++)
-		intervalLegListTest.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+		intervalLegList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+		console.log("Interval added!");
 	}
-	
-
-	console.log(intervalLegListTest.length);
-	console.log("Interval added!");
 
 	clearInputElements();
 	areEditingInterval.value = false;
-
-	console.log("cleaned up!");
 }
 
 
@@ -103,13 +115,15 @@ function removeInterval(interval) {
 	if(areEditingInterval && interval.data.index-1 == indexOfInterval.value) {
 		areEditingInterval.value = false;
 		clearInputElements();
+	} else if(areEditingInterval && interval.data.index-1 < indexOfInterval.value) {
+		indexOfInterval.value = indexOfInterval.value - 1;
 	}
-	intervalLegListTest.remove(interval.data.element);
+	intervalLegList.remove(interval.data.element);
 }
 
 function saveInterval() {
 	console.log("Save interval");
-	var intervalTestInstans = new intervalTest(intervalName.value, intervalLegListTest.value);
+	var intervalTestInstans = new intervalTest(intervalName.value, intervalLegList.value);
 	console.log(intervalTestInstans)
 	console.log("Write to disk");
 
@@ -132,25 +146,24 @@ function clearInputElements() {
 }
 
 function deleteAllIntervallLegs() {
-	for(i=0; i<=intervalLegListTest.length; i++){
-		intervalLegListTest.forEach(function(place) {
-			intervalLegListTest.remove(place);
+	for(i=0; i<=intervalLegList.length; i++){
+		intervalLegList.forEach(function(place) {
+			intervalLegList.remove(place);
 	    });
 	    i = 0;
 	}
 }
 
-var intervalLegListElements = intervalLegListTest.map(function (x, i) {
+var intervalLegListElements = intervalLegList.map(function (x, i) {
   return {
     element: x,
-    max_index: intervalLegListTest.count() - 1,
+    max_index: intervalLegList.count() - 1,
     index: i +1
   };
 });
 
 
 module.exports = {
-	intervalLegListTest: intervalLegListTest,
 	intervalName: intervalName,
 	intervalMins: intervalMins,
 	intervalSecs: intervalSecs,
