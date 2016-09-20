@@ -44,9 +44,30 @@ var intervalTest = function(name, intervalLegList) {
 	this.intervalLegList = intervalLegList;
 }
 
+function validateInput() {
+	if(intervalMins.value == null || intervalMins.value == "") {
+		intervalMins.value = 0;
+	}
+	if(intervalSecs.value == null || intervalSecs.value == "") {
+		intervalSecs.value = 0;
+	}
+	if(intervalPauseMins.value == null || intervalPauseMins.value == "") {
+		intervalPauseMins.value = 0;
+	}
+	if(intervalPauseSecs.value == null || intervalPauseSecs.value == "") {
+		intervalPauseSecs.value = 0;
+	}
+
+	//TODO Legg til validering paa at intervall og pause ikke kan være på 0 sekunder
+	//TODO Legg til validering paa at input er tall
+}
+
 
 
 function addInterval() {
+	
+	validateInput()
+
 	if(areEditingInterval.value) {
 		console.log("Edit interval Leg");
 		var tempIntervalList = Observable();

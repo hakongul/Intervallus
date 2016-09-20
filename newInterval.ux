@@ -42,16 +42,16 @@
 		    	<DockPanel Margin="0,10,0,0">
 		    		<NewIntervalText Value="Intervall time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalMins}"/>
-		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalSecs}"/>	
+		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalMins}" InputHint="Integer"/>
+		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalSecs}" InputHint="Integer"/>	
 		    		</StackPanel>
 		    	</DockPanel>
 		    	
 		    	<DockPanel Margin="0,10,0,0">
 		    		<NewIntervalText Value="Pause time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
-		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalPauseMins}"/>
-		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalPauseSecs}"/>	
+		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalPauseMins}" InputHint="Integer"/>
+		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalPauseSecs}" InputHint="Integer"/>	
 		    		</StackPanel>
 		    	</DockPanel>
 
