@@ -8,8 +8,14 @@
 	<float4 ux:Global="DarkerFontColor" ux:Value="#282828" />
 
 	<!-- Backgrounds -->
-	<Image ux:Class="GeneralBackground" File="Assets/general_background.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<Image ux:Class="GeneralBackground" File="Assets/general_background_5.jpg" StretchMode="UniformToFill" Layer="Background"/>
 	<Image ux:Class="MainPageBackground" File="Assets/general_background_3.jpg" StretchMode="UniformToFill" Layer="Background"/>
+
+
+	<!-- Texts -->
+	<Text ux:Class="NewIntervalText" FontSize="20" Alignment="Center" TextColor="White"/>
+	<Text ux:Class="GeneralText" FontSize="20" Alignment="Center" TextColor="White"/>
+	<Text ux:Class="GeneralTextSmall" FontSize="14" Alignment="Center" TextColor="White"/>
 
 	<!-- Styling -->
 	<!-- Top Part -->
@@ -67,6 +73,12 @@
 	<DefaultRectangle ux:Class="MainPageRectangle">
 		<ImageFill File="Assets/general_background.jpg" StretchMode="UniformToFill"/>	
 	</DefaultRectangle>
+
+	<Rectangle ux:Class="ImageRectangle" Margin="5,0,5,0" Width="25" Height="25">
+		<WhilePressed>
+			<Scale Factor=".9" Duration=".1" />
+		</WhilePressed>
+	</Rectangle>
 
 
 	<!-- Page -->

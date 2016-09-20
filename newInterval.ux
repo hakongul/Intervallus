@@ -1,5 +1,5 @@
 <DockPanel>
-	<Image File="Assets/general_background_5.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<GeneralBackground />
 	<JavaScript File="js/NewInterval.js"/>
 	
 	<DefaultTopStackPanel>
@@ -22,17 +22,6 @@
 			<Scale Factor=".95" Duration=".1" />
 		</WhilePressed>
 	</Rectangle>
-
-	<Text ux:Class="NewIntervalText" FontSize="20" Alignment="Center" TextColor="White"/>
-
-
-	<Rectangle ux:Class="ImageRectangle" Margin="5,0,5,0" Width="25" Height="25">
-		<WhilePressed>
-			<Scale Factor=".9" Duration=".1" />
-		</WhilePressed>
-	</Rectangle>
-
-	
 	
 	<DockPanel>
 	    <DockPanel Alignment="Top">
