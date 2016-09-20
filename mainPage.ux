@@ -1,5 +1,10 @@
 <DockPanel>
-	<MainPageBackground />
+	<!--MainPageBackground /-->
+
+	<Video Layer="Background" File="Assets/main_page_video.mp4" AutoPlay="true" StretchMode="UniformToFill" IsLooping="true" Opacity="0.8" Volume="0">
+		<Blur Radius="4" />
+		<Halftone Smoothness="99" />
+	</Video>
 
 	<DefaultTopStackPanel>
 			<DefaultTopText Value="Intervallus"/>
