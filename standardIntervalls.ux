@@ -10,28 +10,14 @@
 	<ScrollView>
 		<StackPanel>
 			<Each Items="{standardIntervalls}">
-				<Panel Alignment="Center">
-					<!--DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,10,10,0" Alignment="Center">
-						<StackPanel Margin="10,0,10,0" Dock="Left">
-							<GeneralText Value="{name}" Width="270"/>
-							<WhilePressed>
-								<Scale Factor=".9" Duration=".1" />
-							</WhilePressed>
-							<Clicked>
-								<NavigateTo Target="intervall" />
-							</Clicked>
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Margin="10,0,0,0" Dock="Right">
-							<ImageRectangle Clicked="{editInterval}">
-								<ImageFill File="Assets/edit.png" StretchMode="UniformToFill"/>
-							</ImageRectangle>
-							<ImageRectangle Clicked="{removeInterval}">
-								<ImageFill File="Assets/delete.png" StretchMode="UniformToFill"/>
-							</ImageRectangle>
-						</StackPanel>
-					</DockPanel-->
-
-					<GeneralText Value="{name}" TextAlignment="Center" Width="400"/>
+				<Panel>
+					<DockPanel HitTestMode="LocalBoundsAndChildren">
+						<GeneralText Value="{name}" TextAlignment="Center"/>
+						<!--StackPanel Dock="Right" Margin="10,0,20,0">
+							<GeneralTextSmall Value="Difficult level - Hard" TextAlignment="Center" />
+							<GeneralTextSmall Value="Times completed - 0" TextAlignment="Center" />
+						</StackPanel-->
+					</DockPanel>
 					<WhilePressed>
 						<Scale Factor=".9" Duration=".1" />
 					</WhilePressed>

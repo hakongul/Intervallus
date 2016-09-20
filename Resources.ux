@@ -13,7 +13,6 @@
 
 
 	<!-- Texts -->
-	<Text ux:Class="NewIntervalText" FontSize="20" Alignment="Center" TextColor="White"/>
 	<Text ux:Class="GeneralText" FontSize="20" Alignment="Center" TextColor="White"/>
 	<Text ux:Class="GeneralTextSmall" FontSize="14" Alignment="Center" TextColor="White"/>
 
