@@ -1,4 +1,4 @@
-<DockPanel>	
+<DockPanel>
 	<Image File="Assets/general_background_5.jpg" StretchMode="UniformToFill" Layer="Background"/>
 	<JavaScript File="js/NewInterval.js"/>
 	
