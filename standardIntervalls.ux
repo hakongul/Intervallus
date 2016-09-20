@@ -5,19 +5,30 @@
 		<DefaultTopText Value="Standard Intervals"/>
 	</DefaultTopStackPanel>
 
-	<StackPanel>
-		<IntervallListRectangle>
-			<ButtonText Value="4x4"/>
-			<Clicked>
-				<NavigateTo Target="intervall" />
-			</Clicked>
-		</IntervallListRectangle>
+	<JavaScript File="js/StandardIntervalls.js"/>
 
-		<IntervallListRectangle>
-			<ButtonText Value="6x6"/>
-			<Clicked>
-				<NavigateTo Target="intervall" />
-			</Clicked>
-		</IntervallListRectangle>
-	</StackPanel>
+	<ScrollView>
+		<StackPanel>
+			<Each Items="{standardIntervalls}">
+				<Panel>
+					<DockPanel HitTestMode="LocalBoundsAndChildren">
+						<GeneralText Value="{name}" TextAlignment="Center"/>
+						<!--StackPanel Dock="Right" Margin="10,0,20,0">
+							<GeneralTextSmall Value="Difficult level - Hard" TextAlignment="Center" />
+							<GeneralTextSmall Value="Times completed - 0" TextAlignment="Center" />
+						</StackPanel-->
+					</DockPanel>
+					<WhilePressed>
+						<Scale Factor=".9" Duration=".1" />
+					</WhilePressed>
+					<Clicked>
+						<NavigateTo Target="intervall" />
+					</Clicked>
+				</Panel>
+				<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
+
+			</Each>
+		</StackPanel>
+	</ScrollView>
+
 </DockPanel>

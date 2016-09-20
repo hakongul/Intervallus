@@ -5,17 +5,36 @@
 		<DefaultTopText Value="Saved Intervals"/>
 	</DefaultTopStackPanel>
 
+	<JavaScript File="js/MySavedIntervalls.js"/>
+
 	<ScrollView>
-		<StackPanel Margin="0,10,0,0">
-			<JavaScript File="MainView.js"/>
-			
-			<Each Items="{buttons}">
-				<IntervallListRectangle>
-					<ButtonText Value="{text}"/>
-					<Clicked>
-						<NavigateTo Target="intervall" />
-					</Clicked>
-				</IntervallListRectangle>
+		<StackPanel>			
+			<Each Items="{intervals}">
+				<Panel Alignment="Center">
+					<DockPanel HitTestMode="LocalBoundsAndChildren" Alignment="Center">
+						<StackPanel Margin="10,0,10,0" Dock="Left">
+							<GeneralText Value="{name}" Width="270"/>
+							<WhilePressed>
+								<Scale Factor=".9" Duration=".1" />
+							</WhilePressed>
+							<Clicked>
+								<NavigateTo Target="intervall" />
+							</Clicked>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="10,0,0,0" Dock="Right">
+							<ImageRectangle>
+								<ImageFill File="Assets/edit.png" StretchMode="UniformToFill"/>
+								<Clicked>
+									<NavigateTo Target="newInterval" />
+								</Clicked>
+							</ImageRectangle>
+							<ImageRectangle Clicked="{removeInterval}">
+								<ImageFill File="Assets/delete.png" StretchMode="UniformToFill"/>
+							</ImageRectangle>
+						</StackPanel>
+					</DockPanel>
+				</Panel>
+				<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
 			</Each>
 		</StackPanel>
 	</ScrollView>
