@@ -1,67 +1,71 @@
-var storage = require("FuseJS/Storage")
-var observable = require("FuseJS/Observable")
+var Storage = require("FuseJS/Storage");
+var Observable = require("FuseJS/Observable");
 
-function interval(mins, secs, pauseMins, pauseSecs) {
-	this.mins = mins;
-	this.secs = secs;
-	this.pauseMins = pauseMins;
-	this.pauseSecs = pauseSecs;
+var customIntervalList = Observable();
+
+var intervalListFileName = "intervals.ivu";
+
+function writeCustomIntervalList() {
+	var listLength = customIntervalList.length-1;
+	console.log("For each custom interval, write its name to the local storage file with the names");
+
+	var storageString = "";
+	var counter = 0;
+
+	customIntervalList.forEach(function(x) {
+		console.log("Adding " + x + " to the string");
+		if(counter == listLength) {
+			storageString += x;
+			console.log("String is now: " + storageString);
+		} else {
+			storageString += (x + ",");
+			console.log("String is now: " + storageString);
+		}
+		counter++;
+	});
+
+	var result = Storage.writeSync(intervalListFileName, storageString);
+	if(result) {
+		console.log("Successfully stored the custom interval list");
+	} else {
+		console.log("Something went wrong when trying to write the custom interval list");
+	}
 }
 
-var intervalList = observable();
-var intervalName = observable();
-var intervalMins = observable();
-var intervalSecs = observable();
-var intervalPauseMins = observable();
-var intervalPauseSecs = observable();
-var intervalReps = observable();
-var intervalContent = observable();
+function loadCustomIntervalList() {
+	var content = Storage.readSync(intervalListFileName);
+	if(content) {
+		console.log("Successfully read the custom interval list file");
+		customIntervalList.clear();
+		var array = content.split(',');
+		array.forEach(function(name) {
+			customIntervalList.add(name);
+		});
+	}
+}
 
-function writeIntervalList() {
-	var maketheString = intervalListToString();
+function writeInterval(name, stringToWrite) {
+	var fileName = name+".ivu";
 
-	var result = storage.writeSync("test.txt", maketheString);
+	console.log("String to write: " + stringToWrite);
+
+	var result = Storage.writeSync(fileName, stringToWrite);
 	if(result) {
 		console.log("Successfully wrote to file!");
-		console.log("Wrote: " + maketheString);
 	} else {
 		console.log("Something went wrong when trying to write to file");
 	}
-
-	loadIntervalList();
 }
 
-function loadIntervalList() {
-	var content = storage.readSync("test.txt");
+function loadInterval(name) {
+	var fileName = name+".ivu";
+	var content = storage.readSync(fileName);
 	console.log("Successfully read from file!");
 	console.log("Read this: " + content);
-	fromStringToIntervalList(content);
+
+	return content;
 }
 
-function addInterval() {
-	console.log("Adding item to intervalList!");
-	console.log("Interval reps: " + intervalReps.value);
-
-	for(x=1; x<=intervalReps.value; x++){
-		console.log("Iteration: " + x)
-		console.log("Interval minutes: " + intervalMins.value);
-		console.log("Interval seconds: " + intervalSecs.value);
-		console.log("Pause minutes: " + intervalPauseMins.value);
-		console.log("Pause seconds: " + intervalPauseSecs.value);
-	
-		intervalList.add(new interval(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
-		console.log("Interval added!");
-	}
-
-	console.log("IntervalList length: " + intervalList.length);
-}
-
-function removeInterval(intervalItem) {
-	console.log("Removing item from intervalList");
-	console.log("Data in args: " + intervalItem.data.mins + "m, " + intervalItem.data.secs + "s");
-	intervalList.tryRemove(intervalItem.data);
-	console.log("IntervalList length: " + intervalList.length);
-}
 
 function intervalListToString(args) {
 	var intervalString = "";
@@ -116,18 +120,8 @@ function fromStringToIntervalList(intlistString) {
 }
 
 module.exports = {
-	intervalList: intervalList,
-	intervalName: intervalName,
-	intervalMins: intervalMins,
-	intervalSecs: intervalSecs,
-	intervalPauseMins: intervalPauseMins,
-	intervalPauseSecs: intervalPauseSecs,
-	intervalReps: intervalReps,
-	intervalContent: intervalContent,
-	writeIntervalList: writeIntervalList,
-	loadIntervalList: loadIntervalList,
-	addInterval: addInterval,
-	removeInterval: removeInterval,
+	writeInterval: writeInterval,
+	loadInterval: loadInterval,
 	intervalListToString: intervalListToString,
 	fromStringToIntervalList: fromStringToIntervalList
 };

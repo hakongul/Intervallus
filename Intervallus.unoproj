@@ -5,6 +5,7 @@
     "FuseJS"
   ],
   "Includes": [
-    "*"
+    "*",
+    "js/Storage.js:Bundle"
   ]
 }

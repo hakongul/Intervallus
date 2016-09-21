@@ -1,4 +1,5 @@
 var Observable = require("FuseJS/Observable");
+var Storage = require('./Storage.js');
 
 var intervalLegList = Observable();
 var intervalName = Observable();
@@ -32,14 +33,14 @@ function toggleAddIntervalButtonText(){
 	}
 }
 
-var intervalLegTest = function (mins, secs, pauseMins, pauseSecs) {
+var intervalLeg = function (mins, secs, pauseMins, pauseSecs) {
 	this.mins = mins;
 	this.secs = secs;
 	this.pauseMins = pauseMins;
 	this.pauseSecs = pauseSecs;
 }
 
-var intervalTest = function(name, intervalLegList) {
+var interval = function(name, intervalLegList) {
 	this.name = name;
 	this.intervalLegList = intervalLegList;
 }
@@ -73,7 +74,7 @@ function addInterval() {
 		var tempIntervalList = Observable();
 	    for(i=0;i<intervalLegList.length;i++){
 	    	if(i == indexOfInterval.value) {
-				tempIntervalList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+				tempIntervalList.add(new intervalLeg(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
 			} else {
 				tempIntervalList.add(intervalLegList.getAt(i));
 			} 
@@ -88,14 +89,13 @@ function addInterval() {
 	} else {
 		console.log("Adding item to intervalList!");
 		for(i=1;i<=intervalReps.value;i++)
-		intervalLegList.add(new intervalLegTest(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
+		intervalLegList.add(new intervalLeg(intervalMins.value, intervalSecs.value, intervalPauseMins.value, intervalPauseSecs.value));
 		console.log("Interval added!");
 	}
 
 	clearInputElements();
 	areEditingInterval.value = false;
 }
-
 
 
 function editInterval(interval) {
@@ -123,9 +123,11 @@ function removeInterval(interval) {
 
 function saveInterval() {
 	console.log("Save interval");
-	var intervalTestInstans = new intervalTest(intervalName.value, intervalLegList.value);
-	console.log(intervalTestInstans)
-	console.log("Write to disk");
+
+	var name = intervalName.value;
+	var stringToWrite = intervalLegListToString(intervalLegList);
+
+	Storage.writeInterval(name, stringToWrite);
 
 	console.log("Time to clean up");
 
@@ -135,6 +137,26 @@ function saveInterval() {
 
 	//TODO goBack, krever ny refakturering av navigasjon ved å legge til en router, slik at man kan navigere med javascript, se:
 	//https://www.fusetools.com/docs/navigation/navigation
+}
+
+function intervalLegListToString(theList) {
+	var theString = "";
+	var counter = 0;
+	var listLength = theList.length-1;
+
+	theList.forEach(function(item) {
+		console.log("Adding " + item + " to the string");
+		if(counter == listLength){
+			theString += (item.mins + "," + item.secs + "," + item.pauseMins + "," + item.pauseSecs);
+			console.log("String is now: " + theString);
+		} else {
+			theString += (item.mins + "," + item.secs + "," + item.pauseMins + "," + item.pauseSecs + ",");
+			console.log("String is now: " + theString);
+		}
+		counter++;
+	});
+
+	return theString;
 }
 
 function clearInputElements() {
