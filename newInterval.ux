@@ -1,5 +1,5 @@
 <DockPanel>
-	<Image File="Assets/general_background_5.jpg" StretchMode="UniformToFill" Layer="Background"/>
+	<GeneralBackground />
 	<JavaScript File="js/NewInterval.js"/>
 	
 	<DefaultTopStackPanel>
@@ -22,17 +22,6 @@
 			<Scale Factor=".95" Duration=".1" />
 		</WhilePressed>
 	</Rectangle>
-
-	<Text ux:Class="NewIntervalText" FontSize="20" Alignment="Center" TextColor="White"/>
-
-
-	<Rectangle ux:Class="ImageRectangle" Margin="5,0,5,0" Width="25" Height="25">
-		<WhilePressed>
-			<Scale Factor=".9" Duration=".1" />
-		</WhilePressed>
-	</Rectangle>
-
-	
 	
 	<DockPanel>
 	    <DockPanel Alignment="Top">
@@ -40,7 +29,7 @@
 		    	<NewIntervalTextInput PlaceholderText="Name of interval" Margin="10,10,10,0" Value="{intervalName}"/>
 
 		    	<DockPanel Margin="0,10,0,0">
-		    		<NewIntervalText Value="Intervall time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<GeneralText Value="Intervall time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
 		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalMins}" InputHint="Integer"/>
 		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalSecs}" InputHint="Integer"/>	
@@ -48,7 +37,7 @@
 		    	</DockPanel>
 		    	
 		    	<DockPanel Margin="0,10,0,0">
-		    		<NewIntervalText Value="Pause time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<GeneralText Value="Pause time:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<StackPanel Orientation="Horizontal" Alignment="CenterRight">
 		    			<NewIntervalTextInput PlaceholderText="mm" Margin="0,0,0,0" Width="60" Value="{intervalPauseMins}" InputHint="Integer"/>
 		    			<NewIntervalTextInput PlaceholderText="ss" Margin="10,0,10,0" Width="60" Value="{intervalPauseSecs}" InputHint="Integer"/>	
@@ -56,7 +45,7 @@
 		    	</DockPanel>
 
 		    	<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-		    		<NewIntervalText Value="Number of intervals:" Alignment="CenterLeft" Margin="20,0,0,0"/>
+		    		<GeneralText Value="Number of intervals:" Alignment="CenterLeft" Margin="20,0,0,0"/>
 		    		<Slider Minimum="1" Maximum="9" Margin="10,0,10,0" Value="{intervalRepsSliderValue}" Width="130">
 		    			<Pressed>
 		    				<Scale Factor=".98" Duration=".1" />
@@ -77,21 +66,21 @@
 		    				<Panel>
 			    				<DockPanel HitTestMode="LocalBoundsAndChildren" Margin="10,10,10,0">
 			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Left">
-			    						<NewIntervalText Value="{index}" />
-			    						<NewIntervalText Value=". Interval Leg: " Margin="0,0,20,0"/>
-				    					<NewIntervalText Value="{element.mins}" />
-				    					<NewIntervalText Value=":" />
-				    					<NewIntervalText Value="{element.secs}" />
+			    						<GeneralText Value="{index}" />
+			    						<GeneralText Value=". Interval Leg: " Margin="0,0,20,0"/>
+				    					<GeneralText Value="{element.mins}" />
+				    					<GeneralText Value=":" />
+				    					<GeneralText Value="{element.secs}" />
 			    					</StackPanel>
 			    				</DockPanel>
 		    				</Panel>
 		    				<Panel>
 		    					<DockPanel HitTestMode="LocalBoundsAndChildren">
 			    					<StackPanel Orientation="Horizontal" Margin="80,0,10,0" Dock="Left">
-			    						<NewIntervalText Value="Pause: " Margin="0,0,20,0"/>
-				    					<NewIntervalText Value="{element.pauseMins}" />
-				    					<NewIntervalText Value=":" />
-				    					<NewIntervalText Value="{element.pauseSecs}" />
+			    						<GeneralText Value="Pause: " Margin="0,0,20,0"/>
+				    					<GeneralText Value="{element.pauseMins}" />
+				    					<GeneralText Value=":" />
+				    					<GeneralText Value="{element.pauseSecs}" />
 			    					</StackPanel>
 			    					<StackPanel Orientation="Horizontal" Margin="10,0,10,0" Dock="Right">
 				    					<ImageRectangle Clicked="{editInterval}">
