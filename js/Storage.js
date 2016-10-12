@@ -2,6 +2,7 @@ var Storage = require("FuseJS/Storage");
 var Observable = require("FuseJS/Observable");
 
 var customIntervalList = Observable();
+var isIntervalListLoaded = Observable(false);
 
 var intervalListFileName = "intervals.ivu";
 
@@ -33,14 +34,18 @@ function writeCustomIntervalList() {
 }
 
 function loadCustomIntervalList() {
+	console.log("loading custom interval list!");
+	console.log("isIntervalListLoaded er: " + isIntervalListLoaded);
 	var content = Storage.readSync(intervalListFileName);
 	if(content) {
 		console.log("Successfully read the custom interval list file");
 		customIntervalList.clear();
 		var array = content.split(',');
 		array.forEach(function(name) {
-			customIntervalList.add(name);
+			console.log("element name: " + name);
+			customIntervalList.add({name:name});
 		});
+		isIntervalListLoaded.value = true;
 	}
 }
 
@@ -51,6 +56,12 @@ function writeInterval(name, stringToWrite) {
 
 	var result = Storage.writeSync(fileName, stringToWrite);
 	if(result) {
+		var ilfn = Storage.readSync(intervalListFileName);
+		if(ilfn.length == 0){
+			Storage.writeSync(intervalListFileName, name);
+		} else {
+			Storage.writeSync(intervalListFileName, ilfn + "," + name);
+		}
 		console.log("Successfully wrote to file!");
 	} else {
 		console.log("Something went wrong when trying to write to file");
@@ -65,7 +76,6 @@ function loadInterval(name) {
 
 	return content;
 }
-
 
 function intervalListToString(args) {
 	var intervalString = "";
@@ -123,5 +133,9 @@ module.exports = {
 	writeInterval: writeInterval,
 	loadInterval: loadInterval,
 	intervalListToString: intervalListToString,
-	fromStringToIntervalList: fromStringToIntervalList
+	fromStringToIntervalList: fromStringToIntervalList,
+	customIntervalList: customIntervalList,
+	loadCustomIntervalList: loadCustomIntervalList,
+	writeCustomIntervalList: writeCustomIntervalList,
+	isIntervalListLoaded: isIntervalListLoaded
 };

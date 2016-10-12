@@ -1,15 +1,19 @@
 <DockPanel>
+	<JavaScript File="js/Storage.js"/>
 	<GeneralBackground />
 	
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="Saved Intervals"/>
 	</DefaultTopStackPanel>
 
-	<JavaScript File="js/MySavedIntervalls.js"/>
+	<StackPanel>
+		<NewIntervalRectangle Alignment="TopCenter" Margin="10" Width="180" Clicked="{loadCustomIntervalList}">
+			<ButtonText Value="Load" TextColor="DarkerFontColor" />
+		</NewIntervalRectangle>
 
 	<ScrollView>
 		<StackPanel>			
-			<Each Items="{intervals}">
+			<Each Items="{customIntervalList}">
 				<Panel Alignment="Center">
 					<DockPanel HitTestMode="LocalBoundsAndChildren" Alignment="Center">
 						<StackPanel Margin="10,0,10,0" Dock="Left">
@@ -38,4 +42,5 @@
 			</Each>
 		</StackPanel>
 	</ScrollView>
+	</StackPanel>
 </DockPanel>
