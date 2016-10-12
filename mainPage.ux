@@ -1,32 +1,35 @@
 <DockPanel>
 	<!--MainPageBackground /-->
 
-	<Video Layer="Background" File="Assets/main_page_video.mp4" AutoPlay="true" StretchMode="UniformToFill" IsLooping="true" Opacity="0.8" Volume="0">
-		<Blur Radius="4" />
-		<Halftone Smoothness="99" />
+	<Video Layer="Background" File="Assets/main_page_video.mp4" AutoPlay="true" StretchMode="UniformToFill" IsLooping="true" Opacity="0.5" Volume="0">
+		<Blur Radius="8" />
+		<!--Halftone Smoothness="9" /-->
+		<!--DropShadow Distance="95" Spread="50"/-->
 	</Video>
 
 	<DefaultTopStackPanel>
 			<DefaultTopText Value="Intervallus"/>
 	</DefaultTopStackPanel>
 
+	<Text ux:Class="MainPageButtonText" FontSize="24" Alignment="Center" TextColor="White"/>
+
 	<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
 		<MainPageRectangle>
-			<ButtonText Value="Create new interval"/>
+			<MainPageButtonText Value="Create new interval"/>
 			<Clicked>
 				<NavigateTo Target="newInterval" />
 			</Clicked>
 		</MainPageRectangle>
 
 		<MainPageRectangle>
-			<ButtonText Value="My saved intervals"/>
+			<MainPageButtonText Value="My saved intervals"/>
 			<Clicked>
 				<NavigateTo Target="mySavedIntervalls" />
 			</Clicked>
 		</MainPageRectangle>
 
 		<MainPageRectangle>
-			<ButtonText Value="Standard intervals"/>
+			<MainPageButtonText Value="Standard intervals"/>
 			<Clicked>
 				<NavigateTo Target="standardIntervalls" />
 			</Clicked>
