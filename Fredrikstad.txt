@@ -1,0 +1,8 @@
+Fuse - Real deal?
+
+
+Hva skjer om du tar et par backend-utviklere og gir dem frie tøyler med et ferskt kryss-plattform mobilutviklingsrammeverk?
+Siden påske har vi brukt fagtimene til å finne ut svaret på akkurat det, ved å prøve å lage en app i Fuse!
+Vi ser kjapt på om Fuse er egnet og modent nok til kommersielt bruk, og viser fram tidenes app!
+
+Håkon og Joakim er backend utviklere som holder til på Oslo Kommune PFF prosjektet. De har særdeles lite app-utviklings erfaring å skryte av, og kan heller ikke noen ting om frontend, JavaScript eller noe annet som brukes i Fuse. Begge to har utdannelsen sin fra NTNU, og har ca et års fartstid som (betalte) utviklere.
