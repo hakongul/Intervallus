@@ -34,6 +34,12 @@ function writeCustomIntervalList() {
 }
 
 function loadCustomIntervalList() {
+	console.log("loading json custom interval list!")
+	var json = Storage.readSync("test.json")
+	var jsonParsed = JSON.parse(json);
+	console.log(json);
+	console.log("loading json done!");
+
 	console.log("loading custom interval list!");
 	console.log("isIntervalListLoaded er: " + isIntervalListLoaded);
 	var content = Storage.readSync(intervalListFileName);
