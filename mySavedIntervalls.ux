@@ -1,11 +1,10 @@
 <DockPanel>
 	<GeneralBackground />
+	<JavaScript File="js/MySavedIntervalls.js"/>
 	
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="Saved Intervals"/>
 	</DefaultTopStackPanel>
-
-	<JavaScript File="js/MySavedIntervalls.js"/>
 
 	<ScrollView>
 		<StackPanel>			
@@ -13,20 +12,14 @@
 				<Panel Alignment="Center">
 					<DockPanel HitTestMode="LocalBoundsAndChildren" Alignment="Center">
 						<StackPanel Margin="10,0,10,0" Dock="Left">
-							<GeneralText Value="{name}" Width="270"/>
+							<GeneralText Value="{name}" Width="270" Clicked="{intervalClicked}"/>
 							<WhilePressed>
 								<Scale Factor=".9" Duration=".1" />
 							</WhilePressed>
-							<Clicked>
-								<NavigateTo Target="intervall" />
-							</Clicked>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal" Margin="10,0,0,0" Dock="Right">
-							<ImageRectangle>
+							<ImageRectangle Clicked="{newIntervalClicked}">
 								<ImageFill File="Assets/edit.png" StretchMode="UniformToFill"/>
-								<Clicked>
-									<NavigateTo Target="newInterval" />
-								</Clicked>
 							</ImageRectangle>
 							<ImageRectangle Clicked="{removeInterval}">
 								<ImageFill File="Assets/delete.png" StretchMode="UniformToFill"/>

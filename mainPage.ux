@@ -1,5 +1,6 @@
 <DockPanel>
 	<MainPageBackground />
+	<JavaScript File="js/MainPage.js" />
 
 	<DefaultTopStackPanel>
 			<DefaultTopText Value="Intervallus"/>
@@ -7,24 +8,15 @@
 
 	<StackPanel Alignment="BottomCenter" Padding="0, 0, 0, 70">
 		<MainPageRectangle>
-			<ButtonText Value="Create new interval"/>
-			<Clicked>
-				<NavigateTo Target="newInterval" />
-			</Clicked>
+			<ButtonText Value="Create new interval" Clicked="{newIntervalClicked}"/>
 		</MainPageRectangle>
 
 		<MainPageRectangle>
-			<ButtonText Value="My saved intervals"/>
-			<Clicked>
-				<NavigateTo Target="mySavedIntervalls" />
-			</Clicked>
+			<ButtonText Value="My saved intervals" Clicked="{mySavedIntervallsClicked}"/>
 		</MainPageRectangle>
 
 		<MainPageRectangle>
-			<ButtonText Value="Standard intervals"/>
-			<Clicked>
-				<NavigateTo Target="standardIntervalls" />
-			</Clicked>
+			<ButtonText Value="Standard intervals" Clicked="{standardIntervallsClicked}"/>
 		</MainPageRectangle>			
 	</StackPanel>
 </DockPanel>

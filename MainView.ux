@@ -1,33 +1,39 @@
 <App>
-	<Panel>
-		<HierarchicalNavigation ux:Name="nav" Active="mainPage" />
-		<SwipeNavigate AllowedDirections="Both" />
+	<Panel> 
+		<GeneralBackground />  
+		<!--HierarchicalNavigation ux:Name="nav" Active="mainPage" /-->
+		<!--SwipeNavigate AllowedDirections="Both" /-->
 		<iOS.StatusBarConfig Style="Light" IsVisible="true" />
 
 		<ux:Include File="Resources.ux" />
-		<OnBackButton>
+		<JavaScript File="js/MainPage.js" />
+		<!--OnBackButton >
 			<GoBack />
-		</OnBackButton>
+		</OnBackButton-->
 
-		<MyPage ux:Name="mainPage">
-			<ux:Include File="mainPage.ux" />
-		</MyPage>
+		<Router ux:Name="router" />	
+		<Navigator DefaultTemplate="mainPage">
+			<!--SwipeNavigate AllowedDirections="Both" /-->
+			<MyPage ux:Template="mainPage" router="router">
+				<ux:Include File="mainPage.ux" />
+			</MyPage>
 
-		<MyPage ux:Name="newInterval" ux:AutoBind="false">
-			<ux:Include File="newInterval.ux" />
-		</MyPage>
+			<MyPage ux:Template="newInterval" router="router">
+				<ux:Include File="newInterval.ux" />
+			</MyPage>
 
-		<MyPage ux:Name="mySavedIntervalls" ux:AutoBind="false">
-			<ux:Include File="mySavedIntervalls.ux" />
-		</MyPage>
+			<MyPage ux:Template="mySavedIntervalls" router="router">
+				<ux:Include File="mySavedIntervalls.ux" />
+			</MyPage>
 
-		<MyPage ux:Name="standardIntervalls" ux:AutoBind="false">
-			<ux:Include File="standardIntervalls.ux" />		
-		</MyPage>
+			<MyPage ux:Template="standardIntervalls" router="router">
+				<ux:Include File="standardIntervalls.ux" />		
+			</MyPage>
 
-		<MyPage ux:Name="intervall" ux:AutoBind="false">
-			<ux:Include File="intervall.ux" />		
-		</MyPage>
+			<MyPage ux:Template="intervall" router="router">
+				<ux:Include File="intervall.ux" />		
+			</MyPage>
+		</Navigator>
 
 	</Panel>
 </App>

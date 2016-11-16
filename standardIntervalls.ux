@@ -1,18 +1,17 @@
 <DockPanel>
 	<GeneralBackground />
+	<JavaScript File="js/StandardIntervalls.js"/>
 
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="Standard Intervals"/>
 	</DefaultTopStackPanel>
-
-	<JavaScript File="js/StandardIntervalls.js"/>
 
 	<ScrollView>
 		<StackPanel>
 			<Each Items="{standardIntervalls}">
 				<Panel>
 					<DockPanel HitTestMode="LocalBoundsAndChildren">
-						<GeneralText Value="{name}" TextAlignment="Center"/>
+						<GeneralText Value="{name}" TextAlignment="Center" Clicked="{intervalClicked}"/>
 						<!--StackPanel Dock="Right" Margin="10,0,20,0">
 							<GeneralTextSmall Value="Difficult level - Hard" TextAlignment="Center" />
 							<GeneralTextSmall Value="Times completed - 0" TextAlignment="Center" />
@@ -21,9 +20,6 @@
 					<WhilePressed>
 						<Scale Factor=".9" Duration=".1" />
 					</WhilePressed>
-					<Clicked>
-						<NavigateTo Target="intervall" />
-					</Clicked>
 				</Panel>
 				<Rectangle Fill="White" Opacity="0.5" Height="1" Alignment="Top" Margin="0,10,0,10"/>
 

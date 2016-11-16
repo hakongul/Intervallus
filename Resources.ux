@@ -22,17 +22,11 @@
 
 	<Panel ux:Class="DefaultTopStackPanel" Dock="Top"  Height="60">
 		<WhileCanGoBack>
-			<DefaultBackButton>
-				<Clicked>
-					<GoBack />
-				</Clicked>
+			<DefaultBackButton Clicked="{backCliecked}">
 			</DefaultBackButton>
 		</WhileCanGoBack>
 		<WhileCanGoForward>
-			<DefaultForwardButton>
-				<Clicked>
-					<GoForward />
-				</Clicked>
+			<DefaultForwardButton Clicked="{ForwardCliecked}">
 			</DefaultForwardButton>
 		</WhileCanGoForward>
 		<Rectangle Fill="White" Opacity="0.8" Height="2" Alignment="Bottom" Margin="0,10,0,10"/>
@@ -82,6 +76,8 @@
 
 	<!-- Page -->
 	<Page ux:Class="MyPage">
+		<Router ux:Dependency="router" />
+	
         <EnteringAnimation>
             <Move X="1" RelativeTo="ParentSize" />
         </EnteringAnimation>

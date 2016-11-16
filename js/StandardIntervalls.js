@@ -8,6 +8,12 @@ standardIntervalls.add({name:"20x1", subtext:"Completed 5 times"})
 standardIntervalls.add({name:"Tabata", subtext:"Completed 5 times"})
 standardIntervalls.add({name:"Håkons spesial", subtext:"Completed 5 times"})
 
+function intervalClicked()
+{
+    router.push("intervall");
+}
+
 module.exports = {
-	standardIntervalls: standardIntervalls
+	standardIntervalls: standardIntervalls,
+	intervalClicked: intervalClicked
 };

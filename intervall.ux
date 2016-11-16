@@ -1,5 +1,6 @@
 <DockPanel>
 	<GeneralBackground />
+	<JavaScript File="js/Intervall.js" />
 	
 	<DefaultTopStackPanel>
 		<DefaultTopText Value="Interval"/>
